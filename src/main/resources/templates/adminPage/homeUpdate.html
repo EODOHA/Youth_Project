@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+
+<head>
+	<!-- 사용자 CSS 추가 -->
+	
+
+	<!-- 사용자 스크립트 추가 -->
+	<th:block layout:fragment="script">
+	
+	</th:block>
+</head>
+
+<div layout:fragment="content">
+	<a href="/admin/intro/new" class="dropdown-item">인사말관리</a>
+	<a href="#" class="dropdown-item">교육정보</a>
+	<a href="#" class="dropdown-item">나의강의</a>
+	<a href="#" class="dropdown-item">인기과정</a>
+	<a href="#" class="dropdown-item">추천과정</a>
+	<a href="#" class="dropdown-item">Q&A공간</a>
+	<a href="#" class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SUB_AD')">강의등록</a>
+</div>
+</html>
