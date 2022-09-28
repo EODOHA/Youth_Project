@@ -11,8 +11,13 @@ public class MainController {
 		return "mainPage";
 	}
 	
-	@GetMapping(value = "/homeUpdate")
+	@GetMapping(value = "/admin/homeUpdate") // 앞에 '/' 절대 경로 써주면 안 됨 
 	public String homePage() {
-		return "/homeUpdate";
+		return "/adminPage/homeUpdate";
+	}
+	
+	@GetMapping(value = "introPage")
+	public String introPage() {
+		return "/intro/introPage";
 	}
 }

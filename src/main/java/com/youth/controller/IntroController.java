@@ -1,10 +1,14 @@
 package com.youth.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.youth.dto.IntroFormDto;
+import com.youth.dto.IntroSearchDto;
+import com.youth.entity.Intro;
 import com.youth.service.IntroService;
 
 import lombok.RequiredArgsConstructor;
@@ -74,14 +80,14 @@ public class IntroController {
 		}
 		
 		if(introImgFileList.get(0).isEmpty() && introFormDto.getId() == null) {
-			model.addAttribute("errorMessage", "첫 번째 설명 이미지는 필수 입력 값입니다.");
+			model.addAttribute("errorMessage", "첫 번째 인사말 이미지는 필수 입력 값입니다.");
 			return "intro/introForm";
 		}
 		
 		try {
 			introService.updateIntro(introFormDto, introImgFileList);
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "설명 수정 중 에러가 발생했습니다.");
+			model.addAttribute("errorMessage", "인사말 수정 중 에러가 발생했습니다.");
 			return "intro/introForm";
 		}
 		return "redirect:/";

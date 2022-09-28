@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.youth.dto.IntroFormDto;
 import com.youth.dto.IntroImgDto;
+import com.youth.dto.IntroSearchDto;
 import com.youth.entity.Intro;
 import com.youth.entity.IntroImg;
 import com.youth.repository.IntroImgRepository;
@@ -28,7 +31,7 @@ public class IntroService {
 	private final IntroImgRepository introImgRepository;
 	
 	public Long saveIntro(IntroFormDto introFormDto, List<MultipartFile> introImgFileList) throws Exception {
-		// 상품 등록
+		// 인사말 등록
 		Intro intro = introFormDto.createIntro();
 		introRepository.save(intro);
 		
@@ -74,5 +77,10 @@ public class IntroService {
 			introImgService.updateIntroImg(introImgIds.get(i), introImgFileList.get(i));
 		}
 		return intro.getId();
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Intro> getAdminIntroPage(IntroSearchDto introSearchDto, Pageable pageable) {
+		return introRepository.getAdminIntroPage(introSearchDto, pageable);
 	}
 }

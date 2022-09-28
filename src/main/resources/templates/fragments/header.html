@@ -17,7 +17,7 @@
 			<div class="navbar-log-member">
 				<a href="/members/login" class="navbar-log" sec:authorize="isAnonymous()">로그인</a>
 				<a href="/admin/list" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">회원관리</a>
-				<a href="/homeUpdate" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">홈페이지관리</a>
+				<a href="/admin/homeUpdate" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">홈페이지관리</a>
 				<a href="/members/logout" class="navbar-log" sec:authorize="isAuthenticated()">로그아웃</a>
 				<a href="/members/new" class="navbar-member" sec:authorize="isAnonymous()">회원가입</a>
 			</div>
@@ -38,7 +38,7 @@
 				<div class="nav-item dropdown">
 					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">청년센터소개</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-						<a href="#" class="dropdown-item">인사말</a>
+						<a href="/introPage" class="dropdown-item">인사말</a>
 						<a href="#" class="dropdown-item">경기청년일자리협업단</a>
 						<a href="#" class="dropdown-item">공지사항</a>
 					</div>
