@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.youth.dto.IntroFormDto;
 import com.youth.dto.IntroSearchDto;
+import com.youth.dto.MainIntroDto;
 import com.youth.entity.Intro;
 import com.youth.service.IntroService;
 
@@ -92,4 +93,19 @@ public class IntroController {
 		}
 		return "redirect:/";
 	}
+	
+	@GetMapping(value = {"/admin/intros", "/admin/intros/{page}"})
+	public String introManage(IntroSearchDto introSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
+		
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+		
+		Page<Intro> intros = introService.getAdminIntroPage(introSearchDto, pageable);
+		
+		model.addAttribute("intros", intros);
+		model.addAttribute("introSearchDto", introSearchDto);
+		model.addAttribute("maxPage", 5);
+		
+		return "intro/introPage";
+	}
+	
 }

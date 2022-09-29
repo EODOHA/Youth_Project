@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.youth.dto.IntroFormDto;
 import com.youth.dto.IntroImgDto;
 import com.youth.dto.IntroSearchDto;
+import com.youth.dto.MainIntroDto;
 import com.youth.entity.Intro;
 import com.youth.entity.IntroImg;
 import com.youth.repository.IntroImgRepository;
@@ -82,5 +83,10 @@ public class IntroService {
 	@Transactional(readOnly = true)
 	public Page<Intro> getAdminIntroPage(IntroSearchDto introSearchDto, Pageable pageable) {
 		return introRepository.getAdminIntroPage(introSearchDto, pageable);
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<MainIntroDto> getMainIntroPage(IntroSearchDto introSearchDto, Pageable pageable) {
+		return introRepository.getMainIntroPage(introSearchDto, pageable);
 	}
 }
