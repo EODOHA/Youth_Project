@@ -9,15 +9,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @SequenceGenerator(
-		name = "LECTURE_SEQUENCE_GENERATOR",
-		sequenceName = "LECTURE_SEQ",
+		name = "LECTURE_IMG_SEQUENCE_GENERATOR",
+		sequenceName = "LECTURE_IMG_SEQ",
 		initialValue = 1,
 		allocationSize = 1)
 public class LectureImg extends BaseEntity {
 
 	@Id
 	@Column(name="lecture_img_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQUENCE_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LECTURE_IMG_SEQUENCE_GENERATOR")
 	private Long id;
 	
 	private String imgName;

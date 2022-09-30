@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.youth.entity.Intro;
+import com.youth.entity.Lecture;
 
-public interface LectureRepository extends JpaRepository<Intro, Long>, QuerydslPredicateExecutor<Intro>, IntroRepositoryCustom {
+public interface LectureRepository extends JpaRepository<Lecture, Long>, QuerydslPredicateExecutor<Lecture>, LectureRepositoryCustom {
 	
-	List<Intro> findByIntroTitle(String lectureNm);
-	List<Intro> findByIntroTitleOrIntroDetail(String lectureNm, String lectureDetail);
+	List<Lecture> findByLectureNm(String lectureNm);
+	List<Lecture> findByLectureNmOrLectureDetail(String lectureNm, String lectureDetail);
 }

@@ -58,8 +58,8 @@
 			
 			<div class="form-group">
 				<select th:field="*{lectureSellStatus}" class="custom-select">
-					<option value="SELL">오픈강의</option>
-					<option value="NOT_SELL">클로즈강의</option>
+					<option value="OPEN">오픈강의</option>
+					<option value="NOT_OPEN">클로즈강의</option>
 				</select>
 			</div>
 			<div class="input-group">
@@ -100,7 +100,7 @@
 					<div class="custom-file img-div">
 						<input type="file" class="custom-file-input" name="lectureImgFile">
 						<input type="hidden" name="lectureImgIds" th:value="${lectureImgDto.id}">
-						<label class="custom-file-label" th:text="${not #strings.isEmpty(lectureImgDto.oriImgName)} ? ${lectureImgDto.oriImgName} : '강의이미지' + ${stauts.index+1}"></label>
+						<label class="custom-file-label" th:text="${not #strings.isEmpty(lectureImgDto.oriImgName)} ? ${lectureImgDto.oriImgName} : '강의이미지' + ${status.index+1}"></label>
 					</div>
 				</div>
 			</div>

@@ -3,6 +3,9 @@ package com.youth.service;
 import com.youth.entity.LectureImg;
 import com.youth.repository.LectureImgRepository;
 import lombok.RequiredArgsConstructor;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +37,21 @@ public class LectureImgService {
 		// 강의 이미지 정보 저장
 		lectureImg.updateLectureImg(oriImgName, imgName, imgUrl);
 		lectureImgRepository.save(lectureImg);
+	}
+	
+	public void updateLectureImg(Long lectureImgId, MultipartFile lectureImgFile) throws Exception {
+		if(!lectureImgFile.isEmpty()) {
+			LectureImg savedLectureImg = lectureImgRepository.findById(lectureImgId)
+					.orElseThrow(EntityNotFoundException::new);
+			
+			if(!StringUtils.isEmpty(savedLectureImg.getImgName())) {
+				fileService.deleteFile(lectureImgLocation+"/"+savedLectureImg.getImgName());
+			}
+			
+			String oriImgName = lectureImgFile.getOriginalFilename();
+			String imgName = fileService.uploadFile(lectureImgLocation, oriImgName, lectureImgFile.getBytes());
+			String imgUrl = "/images/lecture/" + imgName;
+			savedLectureImg.updateLectureImg(oriImgName, imgName, imgUrl);
+		}
 	}
 }
