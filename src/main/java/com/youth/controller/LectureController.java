@@ -101,6 +101,7 @@ public class LectureController {
 		
 		Page<Lecture> lectures = lectureService.getAdminLecturePage(lectureSearchDto, pageable);
 		
+		System.out.println(lectureService.getAdminLecturePage(lectureSearchDto, pageable));
 		model.addAttribute("lectures", lectures);
 		model.addAttribute("lectureSearchDto", lectureSearchDto);
 		model.addAttribute("maxPage", 5);
