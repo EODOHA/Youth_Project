@@ -38,12 +38,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 		
 		http.authorizeRequests()
-			.mvcMatchers("/", "/members/**").permitAll()
-			.mvcMatchers("/admin/**").hasRole("ADMIN");
-//			.anyRequest().authenticated();
+		.antMatchers("/", "/members/**", "/freeboard/list").permitAll()
+		.antMatchers("/admin/**").access("hasRole('ADMIN')")
+		.antMatchers("/freeboard/write","/freeboard/write/action")
+			.access("hasRole('ADMIN') or hasRole('USER')")
+		.anyRequest().permitAll();
 		
 		http.exceptionHandling()
 			.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+		
+		http.csrf().ignoringAntMatchers("/freeboard/write/action");
 	}
 	
 	@Bean
