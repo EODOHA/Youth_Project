@@ -61,8 +61,8 @@
 						th:text="${info.content}" value=disable></textarea>
 				</div>
 				<div class="mb-3">
-					<label class="form-label">작성자</label> <input type="text"
-						class="form-control" name="writer" th:value="${info.writer}">
+					<label class="form-label">작성자</label> 
+					<input class="form-control" name="writer" th:value="${info.writer}">
 				</div>
 				<div class="float-left">
 					<button type="button" class="btn btn-success"
@@ -71,7 +71,7 @@
 				</div>
 				<div class="float-right">
 					<button type="button" class="btn btn-danger"
-						th:onclick="fnViewDelete()">삭제</button>
+						th:onclick="fnViewDelete()" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제</button>
 				</div>
 
 

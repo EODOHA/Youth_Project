@@ -82,7 +82,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">강의명</span>
 				</div>
-				<input type="text" th:field="*{lectureNm}" class="form-control" paceholder="강의명을 입력해주세요.">
+				<input type="text" th:field="*{lectureNm}" class="form-control" placeholder="강의명을 입력해주세요.">
 			</div>
 			<p th:if="${#fields.hasErrors('lectureNm')}" th:errors="*{lectureNm}" class="fieldError">Incorrect data</p>
 			
