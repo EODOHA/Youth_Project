@@ -42,6 +42,6 @@ public class MainController {
 		model.addAttribute("lectureSearchDto", lectureSearchDto);
 		model.addAttribute("maxPage", 5);
 		
-		return "/lecture/mainLecture";
+		return "lecture/mainLecture";
 	}
 }
