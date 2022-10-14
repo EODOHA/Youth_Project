@@ -39,7 +39,7 @@
 				<div class="col-md-4 margin">
 					<div class="card">
 						<a th:href="'/lecture/' + ${lecture.id}" class="text-dark">
-							<img th:src="${lecture.imgUrl}" class="card-img-top" th:alt="${lecture.lectureNm}" height="400">
+							<img th:src="${lecture.imgUrl}" class="card-img-top" th:alt="${lecture.lectureNm}" height="300">
 							<div class="card-body">
 								<h4 class="card-title">[[${lecture.lectureNm}]]</h4>
 								<p class="card-text">[[${lecture.lectureDetail}]]</p>
@@ -51,8 +51,9 @@
 			</th:block>
 		</div>
 		
-		<!-- <div th:with="start=${(lectures.number/maxPage)*maxPage +1}, end=(${(lectures.totalPages == 0) ? 1 : (start + (maxPage - 1) <Lectures.totalPages ? start + (maxPage - 1) : lectures.totalPages)})">
+		<!-- <div th:with="start=${(lectures.number/maxPage)*maxPage + 1}, end=(${(lectures.totalPages == 0) ? 1 : (start + (maxPage - 1) < Lectures.totalPages ? start + (maxPage - 1) : lectures.totalPages)})" >
 			<ul class="pagination justify-content-center">
+			
 				<li class="page-lecture" th:classappend="${lectures.number eq 0}?'disabled':''">
 					<a th:href="@{'lectures' + '?searchQuery=' + ${lectureSearchDto.searchQuery} + '&page=' + ${lectures.number-1}}" aria-label='Previous' class="page-link">
 						<span aria-hidden='true'>Previous</span>
@@ -62,12 +63,13 @@
 				<li class="page-lecture" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${lectures.number eq page-1}?'active':''">
 					<a th:href="@{'lectures' + '?searchQuery=' + ${lectureSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
 				</li>
-				
+								
 				<li class="page-lecture" th:classappend="${lectures.number+1 ge lectures.totalPages}?'disabled':''">
-					<a th:href="@{'lectures' + '?searchQuery=' + ${lectureSearchDto.searchQuery} + '&page=' ${lectures.number+1}}" aria-label='Nect' class="page-link">
+					<a th:href="@{'lectures' + '?searchQuery=' + ${lectureSearchDto.searchQuery} + '&page=' ${lectures.number+1}}" aria-label='Next' class="page-link">
 						<span aria-hidden='true'>Next</span>
 					</a>
 				</li>
+				
 			</ul>
 		</div> -->
 	</div>

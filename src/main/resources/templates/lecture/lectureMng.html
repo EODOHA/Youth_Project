@@ -64,8 +64,9 @@
 				</tbody>
 			</table>
 			
-			<div th:with="start=${lectures.number/maxPage)*maxPage + 1}, end=(${(lectures.totalPages == 0) ? 1 : (start + (maxPage -1) < lectures.totalPages ? start + (maxPage -1) : lectures.totalPages)})">
+			<div th:with="start=${(lectures.number/maxPage)*maxPage + 1}, end=(${(lectures.totalPages == 0) ? 1 : (start + (maxPage - 1) < lectures.totalPages ? start + (maxPage -1) : lectures.totalPages)})">
 				<ul class="pagination justify-content-center">
+				
 					<li class="page-lecture" th:classappend="${lectures.first}?'disabled'">
 						<a th:onclick="'javascript:page(' + ${lectures.number - 1} + ')'" aria-label='Previous' class="page-link">
 							<span aria-hidden='true'>Previous</span>

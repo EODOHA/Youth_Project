@@ -109,5 +109,14 @@ public class LectureController {
 		return "lecture/lectureMng";
 	}
 	
+	@GetMapping(value = "/lecture/{lectureId}")
+	public String lectureDtl(Model model, @PathVariable("lectureId") Long lectureId) {
+		LectureFormDto lectureFormDto = lectureService.getLectureDtl(lectureId);
+		model.addAttribute("lecture", lectureFormDto);
+		return "lecture/lectureDtl";
+	}
+	
+	
+	
 	
 }
