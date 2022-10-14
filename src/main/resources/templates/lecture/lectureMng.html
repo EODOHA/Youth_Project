@@ -34,6 +34,31 @@
 		select {
 			margin-right: 10px;
 		}
+		
+		.title {
+			color: white;
+			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+			text-align: center;
+			border: 3px solid black;
+			min-width: 700px;
+			max-width: 700px;
+			font-size: 2.0em;
+			font-weight: bold;
+			margin: auto;
+			border-radius: 10px 10px 10px 10px;
+		}
+		
+		.info {
+			text-align: center;
+			margin: auto;
+			min-width: 700px;
+		}
+		
+		.disabled {
+			pointer-events: none;
+			cursor: default;
+		}
+		
 	</style>
 </th:block>
 
@@ -42,9 +67,15 @@
 	<div layout:fragment="content">
 		<form th:action="@{'/admin/lectures/' + ${lectures.number}}" role="form" method="get" th:object="${lectures}">
 			<table class="table">
+			<br>
+			<br>
+				<p class="title">등 록 강 의 리 스 트</p>
+			<br>
+				<p class="info">강의를 선택하여 상태를 수정할 수 있습니다.</p>
+			<br>
 				<thead>
 					<tr>
-						<td>강의아이디</td>
+						<td>강의번호</td>
 						<td>강의명</td>
 						<td>상태</td>
 						<td>등록자</td>
@@ -64,21 +95,21 @@
 				</tbody>
 			</table>
 			
-			<div th:with="start=${(lectures.number/maxPage)*maxPage + 1}, end=(${(lectures.totalPages == 0) ? 1 : (start + (maxPage - 1) < lectures.totalPages ? start + (maxPage -1) : lectures.totalPages)})">
+			<div th:with="start=${(lectureNumber/maxPage)*maxPage + 1}, end=(${(lectureTotalPages == 0) ? 1 : (start + (maxPage - 1) < lectureTotalPages ? start + (maxPage -1) : lectureTotalPages)})">
 				<ul class="pagination justify-content-center">
 				
 					<li class="page-lecture" th:classappend="${lectures.first}?'disabled'">
-						<a th:onclick="'javascript:page(' + ${lectures.number - 1} + ')'" aria-label='Previous' class="page-link">
+						<a th:onclick="'javascript:page(' + ${lectureNumber - 1} + ')'" aria-label='Previous' class="page-link">
 							<span aria-hidden='true'>Previous</span>
 						</a>
 					</li>
 					
-					<li class="page-lecture" th:each="page:${#numbers.sequence(start, end)}" th:classappend="${lectures.number eq page-1}?'active':''">
+					<li class="page-lecture" th:each="page:${#numbers.sequence(start, end)}" th:classappend="${lectureNumber eq page-1}?'active':''">
 						<a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
 					</li>
 					
 					<li class="page-lecture" th:classappend="${lectures.last}?'disabled'">
-						<a th:onclick="'javascript:page(' + ${lectures.number + 1} + ')'" aria-label='Next' class="page-link">
+						<a th:onclick="'javascript:page(' + ${lectureNumber + 1} + ')'" aria-label='Next' class="page-link">
 							<span aria-hidden='true'>Next</span>
 						</a>
 					</li>
@@ -94,7 +125,7 @@
 					<option value="6m">6개월</option>
 				</select>
 				<select th:field="*{searchSellStatus}" class="form-control" style="width:auto;">
-					<option value="">강의상턔(전체)</option>
+					<option value="">강의상태(전체)</option>
 					<option value="OPEN">오픈강의</option>
 					<option value="NOT_OPEN">클로즈강의</option>
 				</select>

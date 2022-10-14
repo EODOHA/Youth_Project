@@ -32,7 +32,7 @@ public class MainController {
 	}
 	
 	
-	@GetMapping(value="lectures")
+	@GetMapping(value = "lectures")
 	public String lectures(LectureSearchDto lectureSearchDto, Optional<Integer> page, Model model) {
 		
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
@@ -41,6 +41,9 @@ public class MainController {
 		model.addAttribute("lectures", lectures);
 		model.addAttribute("lectureSearchDto", lectureSearchDto);
 		model.addAttribute("maxPage", 5);
+		model.addAttribute("lectureNumber", lectures.getNumber());
+		model.addAttribute("lectureTotalPages", lectures.getTotalPages());
+
 		
 		return "lecture/mainLecture";
 	}
