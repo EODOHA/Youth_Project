@@ -97,7 +97,7 @@ public class LectureController {
 	@GetMapping(value = {"/admin/lectures", "/admin/lectures/{page}"})
 	public String lectureManage(LectureSearchDto lectureSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
 	
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 		
 		Page<Lecture> lectures = lectureService.getAdminLecturePage(lectureSearchDto, pageable);
 		
@@ -105,6 +105,8 @@ public class LectureController {
 		model.addAttribute("lectures", lectures);
 		model.addAttribute("lectureSearchDto", lectureSearchDto);
 		model.addAttribute("maxPage", 5);
+		model.addAttribute("lectureNumber", lectures.getNumber());
+		model.addAttribute("lectureTotalPages", lectures.getTotalPages());
 		
 		return "lecture/lectureMng";
 	}
