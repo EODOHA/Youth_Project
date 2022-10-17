@@ -17,7 +17,7 @@ public interface RefBoardFileRepository extends JpaRepository<RefBoardFile, Long
 	
 	static final String UPDATE_DELETE_YN = "UPDATE ref_board_file " + 
 										   "SET DELETE_YN = 'Y' " +
-										   "WHERE ID IN (:deleteRefIdList)";
+										   "WHERE ID IN (:deleteIdList)";
 	
 	static final String DELETE_REF_BOARD_FILE_YN = "UPDATE ref_board_file " + 
 												   "SET DELETE_YN = 'Y' " + 
@@ -29,7 +29,7 @@ public interface RefBoardFileRepository extends JpaRepository<RefBoardFile, Long
 	@Transactional
 	@Modifying
 	@Query(value = UPDATE_DELETE_YN, nativeQuery = true)
-	public int updateDeleteYn(@Param("deleteRefIdList") Long[] deleteRefIdList);
+	public int updateDeleteYn(@Param("deleteIdList") Long[] deleteIdList);
 	
 	@Transactional
 	@Modifying

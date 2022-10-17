@@ -10,6 +10,6 @@ import lombok.Setter;
 public class RefBoardFileRequestDto {
 
 	private Long refId;
-	private Long[] refIdArr;
+	private Long[] RefIdArr;
 	private String refFileId;
 }

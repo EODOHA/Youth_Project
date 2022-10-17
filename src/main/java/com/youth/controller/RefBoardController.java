@@ -78,10 +78,10 @@ public class RefBoardController {
 	}
 	
 	@PostMapping("/refboard/view/delete")
-	public String refBoardViewDeleteAction(Model model, @RequestParam() Long refId) throws Exception {
+	public String refBoardViewDeleteAction(Model model, @RequestParam() Long id) throws Exception {
 		
 		try {
-			refBoardService.deleteById(refId);
+			refBoardService.deleteById(id);
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -89,9 +89,9 @@ public class RefBoardController {
 	}
 	
 	@PostMapping("/refboard/delete")
-	public String refBoardDeleteAction(Model model, @RequestParam() Long[] deleteRefId) throws Exception {
+	public String refBoardDeleteAction(Model model, @RequestParam() Long[] deleteId) throws Exception {
 		try {
-			refBoardService.deleteAll(deleteRefId);
+			refBoardService.deleteAll(deleteId);
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
