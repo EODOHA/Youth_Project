@@ -39,7 +39,7 @@
 					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">청년센터소개</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
 						<a href="/introPage" class="dropdown-item">인사말</a>
-						<a href="#" class="dropdown-item">(NULL)경기청년일자리협업단</a>
+						<a href="/collaboPage" class="dropdown-item">경기청년일자리협업단</a>
 						<a href="#" class="dropdown-item">(NULL)공지사항</a>
 					</div>
 				</div>
@@ -75,7 +75,7 @@
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
 						<a href="/lectures" class="dropdown-item">과정목록</a>
 						<a href="#" class="dropdown-item">(NULL)교육정보</a>
-						<a href="/orders" class="dropdown-item">나의강의</a>
+						<a href="/orders" class="dropdown-item" sec:authorize="isAuthenticated()">나의강의</a>
 						<a href="#" class="dropdown-item">(NULL)인기과정</a>
 						<a href="#" class="dropdown-item">(NULL)추천과정</a>
 						<a href="#" class="dropdown-item">(NULL)Q&A공간</a>
