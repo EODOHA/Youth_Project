@@ -8,9 +8,6 @@
 <!-- 사용자 CSS 추가 -->
 	<th:block layout:fragment="css">
 		<style>
-			.row {
-				margin: 30px;
-			}
 			
 			.card-text {
 				text-overflow: ellipsis;
@@ -19,7 +16,7 @@
 			}
 			
 			.margin {
-				margin-bottom:30px;
+				margin-bottom: 30px;
 			}
 			
 			a:hover {
@@ -36,7 +33,7 @@
 			}
 			
 			.card {
-				min-width: 350px;
+				min-width: 300px;
 				border: 3px solid;
 				background : #EEE;
 			}
@@ -70,10 +67,16 @@
 				border-radius: 10px 10px 10px 10px;
 			}
 			
+			.box {
+				padding: 30px;
+			}
+			
 		</style>
 	</th:block>
 </head>
+<body style="overflow-x: hidden">
 	<div layout:fragment="content">
+		<div class="box">
 		<input type="hidden" name="searchQuery" th:value="${lectureSearchDto.searchQuery}">
 		<div th:if="${not #strings.isEmpty(lectureSearchDto.searchQuery)}" class="center">
 			<p class="h3 font-weight-bold" th:text="${lectureSearchDto.searchQuery} + '검색 결과'"></p>
@@ -83,7 +86,6 @@
 		<p class="title">과 정 목 록</p>
 		<br>
 		<div class="row">
-		
 			<th:block th:each="lecture, status: ${lectures.getContent()}">
 				<div class="col-md-4 margin">
 					<div class="card">
@@ -122,4 +124,6 @@
 			</ul>
 		</div>
 	</div>
+	</div>
+</body>
 </html>
