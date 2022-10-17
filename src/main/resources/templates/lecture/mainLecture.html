@@ -8,6 +8,10 @@
 <!-- 사용자 CSS 추가 -->
 	<th:block layout:fragment="css">
 		<style>
+			.row {
+				margin: 30px;
+			}
+			
 			.card-text {
 				text-overflow: ellipsis;
 				white-space: nowrap;
@@ -23,12 +27,47 @@
 			}
 			
 			.center {
-				text-align:center;
+				text-align: center;
 			}
 			
 			.disabled {
 				pointer-events: none;
 				cursor: default;
+			}
+			
+			.card {
+				min-width: 350px;
+				border: 3px solid;
+				background : #EEE;
+			}
+			
+			.card-img-top {
+				position: relative;
+				margin: auto;
+				width: 300px;
+				height: 300px;
+				display: block;
+				margin: auto;
+				top: 10px;
+				border: 10px solid #103c7e;
+				border-radius: 5px;
+			}
+			
+			.cart-price {
+				text-align: right;
+			}
+			
+			.title {
+				color: white;
+				background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+				text-align: center;
+				border: 3px solid black;
+				min-width: 700px;
+				max-width: 700px;
+				font-size: 2.0em;
+				font-weight: bold;
+				margin: auto;
+				border-radius: 10px 10px 10px 10px;
 			}
 			
 		</style>
@@ -39,17 +78,21 @@
 		<div th:if="${not #strings.isEmpty(lectureSearchDto.searchQuery)}" class="center">
 			<p class="h3 font-weight-bold" th:text="${lectureSearchDto.searchQuery} + '검색 결과'"></p>
 		</div>
-		
+		<br>
+		<br>
+		<p class="title">과 정 목 록</p>
+		<br>
 		<div class="row">
+		
 			<th:block th:each="lecture, status: ${lectures.getContent()}">
 				<div class="col-md-4 margin">
 					<div class="card">
 						<a th:href="'/lecture/' + ${lecture.id}" class="text-dark">
-							<img th:src="${lecture.imgUrl}" class="card-img-top" th:alt="${lecture.lectureNm}" height="600">
+							<img th:src="${lecture.imgUrl}" class="card-img-top" th:alt="${lecture.lectureNm}">
 							<div class="card-body">
-								<h4 class="card-title">[[${lecture.lectureNm}]]</h4>
+								<h4 class="card-title" style="font-weight: bold;">강의명 : [[${lecture.lectureNm}]]</h4>
 								<p class="card-text">[[${lecture.lectureDetail}]]</p>
-								<h3 class="card-title text-primary">[[${lecture.price}]]원</h3>
+								<h3 class="card-price text-primary" style="text-align: right;">[[${lecture.price}]]원</h3>
 							</div>
 						</a>
 					</div>
