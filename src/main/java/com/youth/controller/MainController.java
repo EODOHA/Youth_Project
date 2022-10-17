@@ -31,6 +31,11 @@ public class MainController {
 		return "/adminPage/homeUpdate";
 	}
 	
+	@GetMapping(value = "introPage")
+	public String introPage() {
+		return "/nav/introPage";
+	}
+	
 	
 	@GetMapping(value = "lectures")
 	public String lectures(LectureSearchDto lectureSearchDto, Optional<Integer> page, Model model) {
