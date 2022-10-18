@@ -26,7 +26,7 @@ public class RefBoardRequestDto {
 	
 	@Override
 	public String toString() {
-		return "RefBoardRequestDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent=" + refContent + ", refRegisterId=" 
-	+ refRegisterId + "]";
+		return "RefBoardRequestDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent=" + refContent + ", refRegisterId=" + refRegisterId
+				+ "]";
 	}
 }

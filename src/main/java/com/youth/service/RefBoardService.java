@@ -37,22 +37,26 @@ public class RefBoardService {
 			refResultFlag = true;
 		}
 		
+		System.out.println(refResultFlag);
+		
 		return refResultFlag;
 	}
 	
 	@Transactional(readOnly = true)
 	public HashMap<String, Object> findAll(Integer page, Integer size) throws Exception {
 		
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		HashMap<String, Object> refResultMap = new HashMap<String, Object>();
 		
 		Page<RefBoard> refList = refBoardRepository.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "refRegisterTime")));
 		
-		resultMap.put("refList", refList.stream().map(RefBoardResponseDto::new).collect(Collectors.toList()));
-		resultMap.put("refPaging", refList.getPageable());
-		resultMap.put("refTotalCnt", refList.getTotalElements());
-		resultMap.put("refTotalPage", refList.getTotalPages());
+		refResultMap.put("refList", refList.stream().map(RefBoardResponseDto::new).collect(Collectors.toList()));
+		refResultMap.put("refPaging", refList.getPageable());
+		refResultMap.put("refTotalCnt", refList.getTotalElements());
+		refResultMap.put("refTotalPage", refList.getTotalPages());
 		
-		return resultMap;
+		System.out.println(refResultMap);
+		
+		return refResultMap;
 	}
 	
 	public HashMap<String, Object> findById(Long refId) throws Exception {

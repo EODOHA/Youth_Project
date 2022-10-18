@@ -7,23 +7,23 @@
         <h1>Board Register.</h1>
         <form id="frm" action="/refboard/write/action" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label font-weight-bold"><span class="text-danger">* </span>Title.</label>
-                <input type="text" class="form-control" name="title" required>
+                <label class="form-label font-weight-bold"><span class="text-danger">* </span>제목</label>
+                <input type="text" class="form-control" name="refTitle" required>
             </div>
             <div class="mb-3">
-                <label class="form-label font-weight-bold"><span class="text-danger">* </span>Content.</label>
-                <textarea class="form-control" rows="5" name="content" required></textarea>
+                <label class="form-label font-weight-bold"><span class="text-danger">* </span>내용</label>
+                <textarea class="form-control" rows="5" name="refContent" required></textarea>
             </div>
             <div class="mb-3">
-                <label class="form-label font-weight-bold"><span class="text-danger">* </span>Writer.</label>
-                <input type="text" class="form-control" name="registerId" required>
+                <label class="form-label font-weight-bold"><span class="text-danger">* </span>작성자</label>
+                <input type="text" class="form-control" name="refRegisterId" required>
             </div>
             <div class="mb-3">
-                <label class="form-label font-weight-bold">File Upload.</label>
+                <label class="form-label font-weight-bold">첨부 파일</label>
                 <div id="fileDiv">
                     <div class="custom-file mt-1">
                         <input type="file" class="custom-file-input" id="customFile" name="customFile" onchange="fnChngFile(this);">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <label class="custom-file-label" for="customFile">파일 선택</label>
                     </div>
                 </div>
                 <div class="float-right mt-2">
@@ -31,9 +31,9 @@
                     <a class="btn btn-danger text-white" href="javascript:fnDelFileDiv();">-</a>
                 </div>
             </div>
-            <div class="mt-5">
-                <button type="button" class="btn btn-success" onclick="javascript:location.href='/board/list'">Previous</button>
-                <button type="button" class="btn btn-primary" onclick="fnSubmit();">Submit</button>
+            <div class="float-right mt-5">
+                <button type="button" class="btn btn-success" onclick="javascript:location.href='/board/list'">이전</button>
+                <button type="button" class="btn btn-primary" onclick="fnSubmit();">등록</button>
             </div>
         </form>
         <script src="/js/jquery.min.js"></script>

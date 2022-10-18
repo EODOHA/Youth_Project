@@ -11,12 +11,12 @@ import com.youth.entity.RefBoard;
 
 public interface RefBoardRepository extends JpaRepository<RefBoard, Long> {
 
-	static final String UPDATE_REF_BOARD = "UPDATE RefBoard " + 
-							  "SET TITLE = :#{#refBoardRequestDto.refTitle}, " +
-							  "CONTENT = :#{#refBoardRequestDto.refContent}, " +
-							  "REGISTER_ID = :#{#refBoardRequestDto.refRegisterId}, " +
-							  "UPDATE_TIME = NOW() " +
-							  "WHERE ID = :#{#refBoardRequestDto.refId}";
+	static final String UPDATE_REF_BOARD = "UPDATE Ref_Board "
+			+ "SET TITLE = :#{#refBoardRequestDto.refTitle}, "
+			+ "CONTENT = :#{#refBoardRequestDto.refContent}, "
+			+ "REGISTER_ID = :#{#refBoardRequestDto.refRegisterId}, "
+			+ "UPDATE_TIME = NOW() "
+			+ "WHERE ID = :#{#refBoardRequestDto.refId}";
 
 	static final String UPDATE_REF_BOARD_READ_CNT_INC = "UPDATE RefBoard "
 														+ "SET REF_READ_CNT = REF_READ_CNT + 1 "

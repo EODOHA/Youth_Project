@@ -25,12 +25,14 @@ public class RefBoardResponseDto {
 		this.refReadCnt = entity.getRefReadCnt();
 		this.refRegisterId = entity.getRefRegisterId();
 		this.refRegisterTime = entity.getRefRegisterTime();
+		
 	}
 	
 	@Override
 	public String toString() {
-		return "RefBoardListDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent" + refContent +
-				", refReadCnt=" + refReadCnt + ", refRegisterId=" + refRegisterId + ", refRegisterTime=" + refRegisterTime + "]";
+		return "RefBoardResponseDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent=" + refContent
+									+ ", refReadCnt=" + refReadCnt + ", refRegisterId=" + refRegisterId + ", refRegisterTime=" + refRegisterTime + "]";
+		
 	}
 	
 	public String getRefRegisterTime() {

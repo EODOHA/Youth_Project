@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+@Table(name = "Ref_Board")
 public class RefBoard extends RefBaseTimeEntity {
 
 	@Id
@@ -22,6 +24,7 @@ public class RefBoard extends RefBaseTimeEntity {
 	private String refContent;
 	private int refReadCnt;
 	private String refRegisterId;
+	
 	
 	@Builder
 	public RefBoard(Long refId, String refTitle, String refContent, int refReadCnt, String refRegisterId) {
