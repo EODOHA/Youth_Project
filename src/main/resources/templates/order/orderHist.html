@@ -54,7 +54,7 @@
 			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
 			text-align: center;
 			border: 3px solid black;
-			min-width: 700px;
+			min-width: 50%;
 			max-width: 700px;
 			font-size: 2.0em;
 			font-weight: bold;
@@ -63,21 +63,21 @@
 		}
 		
 		.content-mg {
-			margin -left: 30%;
-			margin -right: 30%;
-			margin -top: 2%;
-			margin -bottom: 100px;
+			margin-top: 2%;
+			margin-bottom: 100px;
 		}
 
 		.repImgDiv {
-			margin -right: 15px;
-			margin -left: 15px;
+			margin-right: 15px;
+			margin-left: 15px;
 			height: auto;
 		}
 
 		.repImg {
-			height: 100px;
-			width: 100px;
+			margin-top: 10px;
+			height: 150px;
+			width: 150px;
+			border: 10px solid #103c7e;
 		}
 
 		.card {
@@ -105,29 +105,40 @@
 		
 		.contbox {
 			margin: auto;
-			
 		}
 		
 		.time {
 			position: relative;
+			float: right;
+			right: 5px;
 			top: 5px;
-			left: 30px;
 		}
 		
 		.cancle {
 			position: relative;
-			margin: auto;
-			left: 30px;
+			float: right;
+			right: 5px;
+			background: #DC3545;
+			pointer-events: none;
+			border: none;
+			border-radius: 5px;
+			width: 90px;
+			height: 38px;
+			color: white;
 		}
 		
-		 .btn {
+		.btn {
 			position: relative;
-			left: 30px;
+			float: right;
+			right: 5px;
 		}
 		
 		.brcont {
 			position: relative;
-			top: 10px;
+			min-width: 500px;
+			margin-left: auto;
+			margin-right: auto;
+			top: 30px;
 		}
 		
 		.align-self-center {
@@ -135,11 +146,14 @@
 			left: 30px;
 		}
 		
+		.d-flex {
+			margin-bottom: 30px;
+		}
 		
 	</style>
 </th:block>
 </head>
-<body>
+<body style="overflow-x: hidden">
 	<div layout:fragment="content" class="content-mg">
 	<div class="contbox">
 		<br>
@@ -147,19 +161,6 @@
 		<p class="title">나 의 강 의</p>
 		<br>
 		<div th:each="order : ${orders.getContent()}">
-			<div class="d-flex mb-3 align-self-center">
-			<div class="brcont">
-					<h4 class="time" th:text="${order.orderDate} + '에 신청한 강의' + '&nbsp'"></h4>
-				<div class="ml-3">
-					<th:block th:if="${order.orderStatus == T(com.youth.constant.OrderStatus).ORDER}">
-						<button type="button" class="btn btn-primary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">강의취소</button>
-					</th:block>
-					<th:block th:unless="${order.orderStatus == T(com.youth.constant.OrderStatus).ORDER}">
-						<h4 class="cancle">[취소 완료]</h4>
-					</th:block>
-				</div>
-			</div>
-			</div>
 			<div class="card d-flex">
 				<div th:each="orderLecture : ${order.orderLectureDtoList}" class="d-flex mb-3">
 				<br>
@@ -170,8 +171,19 @@
 						<span th:text="'강의명 : ' + ${orderLecture.lectureNm}" class="fs24 font-weight-bold"></span>
 						<div class="fs18 font-weight-light">
 							<span th:text="'가격 : ' + ${orderLecture.orderPrice} +'원'"></span>
-							<!-- <span th:text="${orderLecture.count} +'개'"></span> -->
 						</div>
+						<div class="brcont">
+							<div class="ml-3">
+								<th:block th:if="${order.orderStatus == T(com.youth.constant.OrderStatus).ORDER}">
+									<button type="button" class="btn btn-primary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">강의취소</button>
+								</th:block>
+								<th:block th:unless="${order.orderStatus == T(com.youth.constant.OrderStatus).ORDER}">
+									<button class="cancle btn-primary">취소 완료</button>
+								</th:block>
+							</div>
+							<h4 class="time" th:text="${order.orderDate} + '에 신청한 강의' + '&nbsp'"></h4>
+						</div>
+							<!-- <span th:text="${orderLecture.count} +'개'"></span> -->
 					</div>
 				</div>
 			</div>

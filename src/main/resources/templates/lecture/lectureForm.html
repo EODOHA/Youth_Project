@@ -45,8 +45,11 @@
 		}
 		
 		.input-group-text {
+			position: relative;
 			background: #61b6b2;
+			border: none;
 			color: white;
+			
 		}
 		
 		.form-group {
@@ -73,7 +76,7 @@
 			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
 			text-align: center;
 			border: 3px solid black;
-			min-width: 700px;
+			min-width: 50%;
 			max-width: 700px;
 			font-size: 2.0em;
 			font-weight: bold;
@@ -149,6 +152,7 @@
 		.custom-file-input {
 			border: 1px solid black;
 			border-radius: 10px; 
+			cursor: pointer;
 		}
 		
 	</style>
@@ -168,6 +172,12 @@
     	    		event.preventDefault();
     	    	}
     	    }
+    	    function btnClick2(event) {
+    	    	if(!confirm('수정하시겠습니까?')) {
+    	    		event.preventDefault();
+    	    	}
+    	    }
+    	    
 	    </script>
 	</th:block>
 </head>
@@ -241,7 +251,7 @@
 				<button th:formaction="@{/admin/lecture/new}" type="submit" class="btn btn-primary" onclick="btnClick(event)">저장</button>
 			</div>
 			<div th:unless="${#strings.isEmpty(lectureFormDto.id)}" style="text-align: center">
-				<button th:formaction="@{'/admin/lecture/' + ${lectureFormDto.id} }" type="submit" class="btn btn-primary">수정</button>
+				<button th:formaction="@{'/admin/lecture/' + ${lectureFormDto.id} }" type="submit" class="btn btn-primary" onclick="btnClick2(event)">수정</button>
 			</div>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 			</div>

@@ -34,7 +34,9 @@
 		select {
 			margin-right: 10px;
 			float: left;
+			
 		}
+		
 		.selectBox {
 			position: relative;
 			border: 1px solid #61b6b2;
@@ -44,7 +46,9 @@
 			font-size: 1.2em;
 			padding: 10px;
 			top:-10px;
+			cursor: pointer;
 		}
+		
 		option {
 			background: white;
 			color: black;
@@ -55,7 +59,7 @@
 			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
 			text-align: center;
 			border: 3px solid black;
-			min-width: 700px;
+			min-width: 50%;
 			max-width: 700px;
 			font-size: 2.0em;
 			font-weight: bold;
@@ -82,6 +86,23 @@
 			text-align: center;
 		}
 		
+		.lecNm {
+			font-weight: bold;
+		}
+		
+		.lecNm:hover {
+			background: #808080;
+		}
+		
+		.trNm {
+			font-weight: bold;
+		}
+		
+		.a {
+			display:inline-block;
+			width: 100%;
+		}
+		
 	</style>
 </th:block>
 
@@ -89,30 +110,30 @@
 <body>
 	<div layout:fragment="content">
 		<form th:action="@{'/admin/lectures/' + ${lectures.number}}" role="form" method="get" th:object="${lectures}">
-			<table class="table">
+			<table class="table table-hover table-bordered border-dark align-middle">
 			<br>
-				<p class="title">등 록 강 의 리 스 트</p>
+				<p class="title">강 의 수 정</p>
 			<br>
-				<p class="info">강의를 선택하여 상태를 수정할 수 있습니다.</p>
+				<p class="info">강의명을 선택하여 상태를 정보를 수정할 수 있습니다.</p>
 			<br>
 				<thead>
-					<tr>
-						<td>강의번호</td>
-						<td>강의명</td>
-						<td>상태</td>
-						<td>등록자</td>
-						<td>등록일</td>
+					<tr class="trNm">
+						<td class="text-center">강의번호</td>
+						<td class="table-active text-center">강의명</td>
+						<td class="text-center">상태</td>
+						<td class="text-center">등록자</td>
+						<td class="text-center">등록일</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="lecture, status:${lectures.getContent()}">
-						<td th:text="${lecture.id}"></td>
-						<td>
-							<a th:href="'/admin/lecture/'+${lecture.id}" th:text="${lecture.lectureNm}"></a>
+						<td class="text-center" th:text="${lecture.id}"></td>
+						<td class="lecNm table-active text-center">
+							<a class="a" th:href="'/admin/lecture/'+${lecture.id}" th:text="${lecture.lectureNm}"></a>
 						</td>
-						<td th:text="${lecture.lectureSellStatus == T(com.youth.constant.LectureSellStatus).OPEN} ? '오픈강의' : '클로즈강의'"></td>
-						<td th:text="${lecture.createdBy}"></td>
-						<td th:text="${lecture.regTime}"></td>
+						<td class="text-center" th:text="${lecture.lectureSellStatus == T(com.youth.constant.LectureSellStatus).OPEN} ? '오픈강의' : '클로즈강의'"></td>
+						<td class="text-center" th:text="${lecture.createdBy}"></td>
+						<td class="text-center" th:text="${lecture.regTime}"></td>
 					</tr>
 				</tbody>
 			</table>

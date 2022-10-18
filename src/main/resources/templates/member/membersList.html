@@ -42,7 +42,7 @@
 		<th:block layout:fragment="script">
 		<script th:inline="javascript">    	    
     	    function btnClick(event) {
-    	    	if(!confirm('회원 선택을 제대로 하셨습니까? \n어드민 선택 시 페이지가 초기화 됩니다.')) {
+    	    	if(!confirm('회원 선택을 제대로 하셨습니까? \n어드민 선택 시 진입할 수 없습니다.')) {
     	    		event.preventDefault();
     	    	}
     	    }
