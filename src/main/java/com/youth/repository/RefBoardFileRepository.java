@@ -29,7 +29,7 @@ public interface RefBoardFileRepository extends JpaRepository<RefBoardFile, Long
 	@Transactional
 	@Modifying
 	@Query(value = UPDATE_DELETE_YN, nativeQuery = true)
-	public int updateDeleteYn(@Param("deleteIdList") Long[] deleteIdList);
+	public int updateDeleteYn(@Param("deleteIdList") Long[] deleteRefIdList);
 	
 	@Transactional
 	@Modifying

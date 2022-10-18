@@ -11,9 +11,10 @@ import com.youth.entity.RefBoard;
 
 public interface RefBoardRepository extends JpaRepository<RefBoard, Long> {
 
-	String UPDATE_REF_BOARD = "UPDATE RefBoard " + 
+	static final String UPDATE_REF_BOARD = "UPDATE RefBoard " + 
 							  "SET TITLE = :#{#refBoardRequestDto.refTitle}, " +
 							  "CONTENT = :#{#refBoardRequestDto.refContent}, " +
+							  "REGISTER_ID = :#{#refBoardRequestDto.refRegisterId}, " +
 							  "UPDATE_TIME = NOW() " +
 							  "WHERE ID = :#{#refBoardRequestDto.refId}";
 
@@ -23,6 +24,8 @@ public interface RefBoardRepository extends JpaRepository<RefBoard, Long> {
 	
 	static final String DELETE_REF_BOARD = "DELETE FROM RefBoard "
 											+ "WHERE ID IN(:deleteRefList)";
+	
+	
 	@Transactional
 	@Modifying
 	@Query(value = UPDATE_REF_BOARD, nativeQuery = true)

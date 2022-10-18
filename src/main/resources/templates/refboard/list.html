@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout}">
 <th:block layout:fragment="content">
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+
 	<script th:inline="javascript">
 		$("#chkAll").click(function() {
 			if (this.checked) {
@@ -44,8 +44,7 @@
 		<div class="container">
 			<form action="/refboard/list" id="frm" method="get">
 				<div class="col-md-12 mt-4">
-					<table
-						class="table table-striped table-horizontal table-bordered mt-3">
+					<table class="table table-striped table-horizontal table-bordered mt-3">
 						<thead class="thead-strong">
 							<tr>
 								<th width="5%"><input type="checkbox" id="chkAll"></th>
@@ -57,15 +56,17 @@
 							</tr>
 						</thead>
 						<tbody id="tbody">
-							<tr th:each="list,index : ${refResultMap.refList}"
+							<tr th:each="refList,index : ${refResultMap.refList}"
 								th:with="paging=${refResultMap.refPaging}">
 								<td><input type="checkbox" name="deleteRefId"
 									th:value=${refList.refId}></td>
 								<td><span
 									th:text="${(refResultMap.refTotalCnt - index.index) - (paging.pageNumber * paging.pageSize)}"></span>
 								</td>
-								<td><a th:href="@{./view(id=${refList.refId})}"><span
-										th:text="${refList.refTitle}"></span></a></td>
+								<td>
+								<a th:href="@{./view(refId=${refList.refId})}">
+									<span th:text="${refList.refTitle}"></span>
+								</a>
 								<td><span th:text="${refList.refRegisterId}"></span></td>
 								<td><span th:text="${refList.refReadCnt}"></span></td>
 								<td><span th:text="${refList.refRegisterTime}"></span></td>

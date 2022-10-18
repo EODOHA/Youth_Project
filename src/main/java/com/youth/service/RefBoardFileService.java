@@ -112,7 +112,7 @@ public class RefBoardFileService {
 											.fileSize(fileSize)
 											.fileExt(fileExt)
 											.filePath(filePath)
-											.deleteYn("N")
+											.refDeleteYn("N")
 											.build();
 				
 				refResultList.add(refBoardFileRepository.save(refBoardFile).getRefId());

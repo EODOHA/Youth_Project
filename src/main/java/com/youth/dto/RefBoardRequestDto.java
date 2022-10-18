@@ -23,4 +23,10 @@ public class RefBoardRequestDto {
 			.refRegisterId(refRegisterId)
 			.build();
 	}
+	
+	@Override
+	public String toString() {
+		return "RefBoardRequestDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent=" + refContent + ", refRegisterId=" 
+	+ refRegisterId + "]";
+	}
 }

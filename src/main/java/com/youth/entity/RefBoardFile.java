@@ -28,14 +28,14 @@ public class RefBoardFile {
 	private int fileSize;
 	private String fileExt;
 	private String filePath;
-	private String deleteYn;
+	private String refDeleteYn;
 	
 	@CreatedDate
 	private LocalDateTime registerTime;
 	
 	@Builder
 	public RefBoardFile(Long refId, Long refBoardId, String origFileName, String saveFileName
-						, int fileSize, String fileExt, String filePath, String deleteYn, LocalDateTime registerTime) {
+						, int fileSize, String fileExt, String filePath, String refDeleteYn, LocalDateTime registerTime) {
 		this.refId = refId;
 		this.refBoardId = refBoardId;
 		this.origFileName = origFileName;
@@ -43,7 +43,7 @@ public class RefBoardFile {
 		this.fileSize = fileSize;
 		this.fileExt = fileExt;
 		this.filePath = filePath;
-		this.deleteYn = deleteYn;
+		this.refDeleteYn = refDeleteYn;
 		this.registerTime = registerTime;
 	}
 }

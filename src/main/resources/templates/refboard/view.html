@@ -6,8 +6,10 @@
 <script th:inline="javascript">
 	let frm = $("#frm");
 	let $origFileDiv = $(".custom-file");
-	let fileMaxCnt = 3, fileMaxSize = 10485760, fileAllowExt = ["jpg", "jpeg", "png"];
-	let deleteFileIdArr = [];
+	let fileMaxCnt = 3, 
+	fileMaxSize = 10485760, 
+	fileAllowExt = ["jpg", "jpeg", "png"];
+	let deleteFileRefIdArr = [];
 	
 	function fnAddFileDiv() {
 		let fileDivCnt = $(".custom-file").length;
