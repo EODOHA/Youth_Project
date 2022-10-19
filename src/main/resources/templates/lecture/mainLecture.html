@@ -93,7 +93,7 @@
 		</div>
 		<br>
 		<br>
-		<p class="title">과 정 목 록</p>
+		<p class="title">강 의 목 록</p>
 		<br>
 		<div class="row">
 			<th:block th:each="lecture, status: ${lectures.getContent()}">
@@ -117,7 +117,7 @@
 			
 				<li class="page-lecture" th:classappend="${lectureNumber eq 0}?'disabled':''">
 					<a th:href="@{'lectures' + '?searchQuery=' + ${lectureSearchDto.searchQuery} + '&page=' + ${lectureNumber-1}}" aria-label='Previous' class="page-link">
-						<span aria-hidden='true'>Previous</span>
+						<span aria-hidden='true'>이전</span>
 					</a>
 				</li>
 				
@@ -127,7 +127,7 @@
 								
 				<li class="page-lecture" th:classappend="${lectureNumber+1 ge lectureTotalPages}?'disabled':''">
 					<a th:href="@{'lectures' + '?searchQuery=' + ${lectureSearchDto.searchQuery} + '&page=' + ${lectureNumber+1}}" aria-label='Next' class="page-link">
-						<span aria-hidden='true'>Next</span>
+						<span aria-hidden='true'>다음</span>
 					</a>
 				</li>
 				
