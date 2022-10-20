@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/", "/members/**", "/freeboard/list").permitAll()
 		.antMatchers("/admin/**").access("hasRole('ADMIN')")
 		.antMatchers("/freeboard/write","/freeboard/write/action")
-			.access("hasRole('ADMIN') or hasRole('USER')")
+			.access("hasRole('ADMIN') or hasRole('USER') or hasRole('SUB_AD')")
 		.anyRequest().permitAll();
 		
 		http.exceptionHandling()
