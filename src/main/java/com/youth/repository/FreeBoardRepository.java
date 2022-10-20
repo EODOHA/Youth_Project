@@ -39,4 +39,5 @@ public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long>{
 	@Query(value = DELETE_FREEBOARD, nativeQuery = true)
 	public int deleteFreeBoard(@Param("deleteList") Long[] deleteList);
 
+
 }
