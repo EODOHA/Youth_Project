@@ -1,15 +1,24 @@
 package com.youth.controller;
 
+import java.security.Principal;
+
+
+import javax.validation.Valid;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.youth.dto.FreeBoardRequestDto;
+
+import com.youth.entity.Member;
 import com.youth.repository.FreeBoardRepository;
 import com.youth.service.FreeBoardService;
+import com.youth.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +27,8 @@ import lombok.RequiredArgsConstructor;
 public class FreeBoardController {
 	
 	private final FreeBoardService fbService;
-	
 	private final FreeBoardRepository fbRepository;
+	private final MemberService memberService;
 	
 	@GetMapping("/freeboard/list")
 	public String getFreeBoardListPage(Model model, @RequestParam(required = false, defaultValue = "0")
@@ -36,6 +45,7 @@ public class FreeBoardController {
 	
 	@GetMapping("/freeboard/write")
 	public String getFreeBoardWritePage(Model model, FreeBoardRequestDto fbRequestDto) throws Exception{
+		
 		return "/freeboard/write";
 	}
 	
@@ -63,7 +73,9 @@ public class FreeBoardController {
 			}
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
-		}
+		};
+		
+		
 		return "redirect:/freeboard/list";
 	}
 	

@@ -55,7 +55,8 @@
 			</div>
 			<div class="mb-3">
 				<label class="form-label" >작성자</label>
-				<input type="text"  class="form-control" name="writer" >
+				<input type="text" class="form-control" name="writer" th:value="${#authentication.name}" readonly >
+				<!-- <p class="form-control" th:text="${#authentication.name}"></p> -->
 			</div>
 			<button type="button" class="btn btn-success" onclick="javascript: location.href='/freeboard/list'">
 				목록으로

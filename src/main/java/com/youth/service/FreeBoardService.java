@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.youth.dto.FreeBoardRequestDto;
 import com.youth.dto.FreeBoardResponseDto;
 import com.youth.entity.FreeBoard;
+import com.youth.entity.Member;
 import com.youth.repository.FreeBoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,11 @@ public class FreeBoardService {
 	private final FreeBoardRepository fbRepository;
 	
 	@Transactional
-	public Long save(FreeBoardRequestDto fbSaveDto) {
+	public Long save(FreeBoardRequestDto fbSaveDto) {			
+		
 		return fbRepository.save(fbSaveDto.toEntity()).getFboardno();
 	}
+	
 
 	/*
 	 * 트랜잭션에 readOnly=true 옵션을 주면 스프링 프레임워크가 하이버네이트 세션 플러시 모드를 MANUAL로 설정한다. 이렇게하면
