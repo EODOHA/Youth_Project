@@ -19,6 +19,7 @@ public class RefBoardFileResponseDto {
 	
 	@Override
 	public String toString() {
-		return "FileMstResponseDto [origFileName=" + origFileName + ", saveFileName=" + saveFileName + ", filePath=" + filePath + "]";
+		return "FileMstResponseDto [origFileName=" + origFileName + ", saveFileName=" 
+									+ saveFileName + ", filePath=" + filePath + "]";
 	}
 }

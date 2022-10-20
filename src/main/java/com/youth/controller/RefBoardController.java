@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.youth.dto.RefBoardRequestDto;
 import com.youth.service.RefBoardService;
@@ -39,7 +40,7 @@ public class RefBoardController {
 	public String getRefBoardViewPage(Model model, RefBoardRequestDto refBoardRequestDto) throws Exception {
 		try {
 			if(refBoardRequestDto.getRefId() != null) {
-				model.addAttribute("refInfo", refBoardService.findById(refBoardRequestDto.getRefId()));
+				model.addAttribute("refResultMap", refBoardService.findByRefId(refBoardRequestDto.getRefId()));
 			}
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
@@ -48,11 +49,9 @@ public class RefBoardController {
 	}
 	
 	@PostMapping("/refboard/write/action")
-	public String refBoardWriteAction(Model model, RefBoardRequestDto refBoardRequestDto) throws Exception {
+	public String refBoardWriteAction(Model model, RefBoardRequestDto refBoardRequestDto, MultipartHttpServletRequest multiRequest) throws Exception {
 		try {
-			Long refResult = refBoardService.save(refBoardRequestDto);
-			
-			if(refResult < 0) {
+			if(!refBoardService.save(refBoardRequestDto, multiRequest)) {
 				throw new Exception("#Exception refBoardWriteAction!");
 			}
 		} catch(Exception e) {
@@ -63,11 +62,12 @@ public class RefBoardController {
 	}
 	
 	@PostMapping("/refboard/view/action")
-	public String refBoardViewAction(Model model, RefBoardRequestDto refBoardRequestDto) throws Exception {
+	public String refBoardViewAction(Model model, RefBoardRequestDto refBoardRequestDto, MultipartHttpServletRequest multiRequest) throws Exception {
+
 		try {
-			int refResult = refBoardService.updateRefBoard(refBoardRequestDto);
+			boolean refResult = refBoardService.updateRefBoard(refBoardRequestDto, multiRequest);
 			
-			if(refResult < 1) {
+			if(!refResult) {
 				throw new Exception("#Exception refBoardViewAction!");
 			}
 		} catch(Exception e) {
@@ -81,7 +81,7 @@ public class RefBoardController {
 	public String refBoardViewDeleteAction(Model model, @RequestParam() Long refId) throws Exception {
 		
 		try {
-			refBoardService.deleteById(refId);
+			refBoardService.deleteByRefId(refId);
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -89,9 +89,9 @@ public class RefBoardController {
 	}
 	
 	@PostMapping("/refboard/delete")
-	public String refBoardDeleteAction(Model model, @RequestParam() Long[] deleteRefId) throws Exception {
+	public String refBoardDeleteAction(Model model, @RequestParam() Long[] deleteRefList) throws Exception {
 		try {
-			refBoardService.deleteAll(deleteRefId);
+			refBoardService.deleteAll(deleteRefList);
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
