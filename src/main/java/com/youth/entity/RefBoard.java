@@ -1,5 +1,6 @@
 package com.youth.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +19,17 @@ public class RefBoard extends RefBaseTimeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long refId;
+	
+	@Column(nullable = false)
 	private String refTitle;
+	
+	@Column(nullable = false)
 	private String refContent;
+	
+	@Column(nullable = false)
 	private int refReadCnt;
+	
+	@Column(nullable = false)
 	private String refRegisterId;
 	
 	@Builder
