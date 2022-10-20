@@ -11,18 +11,21 @@ import com.youth.entity.RefBoard;
 
 public interface RefBoardRepository extends JpaRepository<RefBoard, Long> {
 
-	String UPDATE_REF_BOARD = "UPDATE RefBoard " + 
-							  "SET TITLE = :#{#refBoardRequestDto.refTitle}, " +
-							  "CONTENT = :#{#refBoardRequestDto.refContent}, " +
-							  "UPDATE_TIME = NOW() " +
-							  "WHERE ID = :#{#refBoardRequestDto.refId}";
+	static final String UPDATE_REF_BOARD = "UPDATE Ref_Board " + 
+							  "SET REF_TITLE = :#{#refBoardRequestDto.refTitle}, " +
+							  "REF_CONTENT = :#{#refBoardRequestDto.refContent}, " +
+							  "REF_REGISTER_ID = :#{#refBoardRequestDto.refRegisterId}, " +
+							  "REF_UPDATE_TIME = NOW() " +
+							  "WHERE REF_ID = :#{#refBoardRequestDto.refId}";
 
-	static final String UPDATE_REF_BOARD_READ_CNT_INC = "UPDATE RefBoard "
+	static final String UPDATE_REF_BOARD_READ_CNT_INC = "UPDATE Ref_Board "
 														+ "SET REF_READ_CNT = REF_READ_CNT + 1 "
-														+ "WHERE ID = :refId";
+														+ "WHERE REF_ID = :refId";
 	
-	static final String DELETE_REF_BOARD = "DELETE FROM RefBoard "
-											+ "WHERE ID IN(:deleteRefList)";
+	static final String DELETE_REF_BOARD = "DELETE FROM Ref_Board "
+											+ "WHERE REF_ID IN(:deleteRefList)";
+	
+	
 	@Transactional
 	@Modifying
 	@Query(value = UPDATE_REF_BOARD, nativeQuery = true)

@@ -28,9 +28,9 @@ public class RefBoardFileController {
 	private final RefBoardFileService refBoardFileService;
 	
 	@GetMapping("/reffile/download")
-	public void downloadRefFile(@RequestParam() Long refId, HttpServletResponse response) throws Exception {
+	public void downloadRefFile(@RequestParam(value="refId", required=false) Long refId, HttpServletResponse response) throws Exception {
 		try {
-			RefBoardFileResponseDto refFileInfo = refBoardFileService.findById(refId);
+			RefBoardFileResponseDto refFileInfo = refBoardFileService.findByRefId(refId);
 			
 			if(refFileInfo == null) throw new FileNotFoundException("Empty RefFileData.");
 			
@@ -77,7 +77,7 @@ public class RefBoardFileController {
 	@PostMapping("/reffile/delete.ajax")
 	public String updateRefDeleteYn(Model model, RefBoardFileRequestDto refBoardFileRequestDto) throws Exception {
 		try {
-		model.addAttribute("refResult", refBoardFileService.updateDeleteYn(refBoardFileRequestDto.getRefIdArr()));
+		model.addAttribute("refResult", refBoardFileService.updateRefDeleteYn(refBoardFileRequestDto.getRefIdArr()));
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}

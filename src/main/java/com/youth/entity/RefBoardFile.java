@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+//@Table(name="Ref_Board_File")
 public class RefBoardFile {
 
 	@Id
@@ -28,14 +30,14 @@ public class RefBoardFile {
 	private int fileSize;
 	private String fileExt;
 	private String filePath;
-	private String deleteYn;
+	private String refDeleteYn;
 	
 	@CreatedDate
 	private LocalDateTime registerTime;
 	
 	@Builder
 	public RefBoardFile(Long refId, Long refBoardId, String origFileName, String saveFileName
-						, int fileSize, String fileExt, String filePath, String deleteYn, LocalDateTime registerTime) {
+						, int fileSize, String fileExt, String filePath, String refDeleteYn, LocalDateTime registerTime) {
 		this.refId = refId;
 		this.refBoardId = refBoardId;
 		this.origFileName = origFileName;
@@ -43,7 +45,7 @@ public class RefBoardFile {
 		this.fileSize = fileSize;
 		this.fileExt = fileExt;
 		this.filePath = filePath;
-		this.deleteYn = deleteYn;
+		this.refDeleteYn = refDeleteYn;
 		this.registerTime = registerTime;
 	}
 }

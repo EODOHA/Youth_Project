@@ -17,7 +17,7 @@ import lombok.Getter;
 public class RefBaseTimeEntity {
 
 	@CreatedDate
-	private LocalDateTime RefRegisterTime;
+	private LocalDateTime refRegisterTime;
 	
 	@LastModifiedDate
 	private LocalDateTime refUpdateTime;
