@@ -30,7 +30,84 @@
 
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
+<<<<<<< HEAD
+	<style>
+		select {
+			margin-right: 10px;
+			float: left;
+			
+		}
+		
+		.selectBox {
+			position: relative;
+			border: 1px solid #61b6b2;
+			border-radius: 10px;
+			background: #61b6b2;
+			color: white;
+			font-size: 1.2em;
+			padding: 10px;
+			top:-10px;
+			cursor: pointer;
+		}
+		
+		option {
+			background: white;
+			color: black;
+		}
+		
+		.title {
+			color: white;
+			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+			text-align: center;
+			border: 3px solid black;
+			min-width: 50%;
+			max-width: 700px;
+			font-size: 2.0em;
+			font-weight: bold;
+			margin: auto;
+			border-radius: 10px 10px 10px 10px;
+		}
+		
+		.info {
+			text-align: center;
+			margin: auto;
+			min-width: 700px;
+		}
+		
+		.disabled {
+			pointer-events: none;
+			cursor: default;
+		}
+		
+		form {
+			margin: 30px;
+		}
+		
+		.form-inline {
+			text-align: center;
+		}
+		
+		.lecNm {
+			font-weight: bold;
+		}
+		
+		.lecNm:hover {
+			background: #808080;
+		}
+		
+		.trNm {
+			font-weight: bold;
+		}
+		
+		.a {
+			display:inline-block;
+			width: 100%;
+		}
+		
+	</style>
+=======
 	<link rel="stylesheet" type="text/css" href="/css/lecture/lectureMng.css">
+>>>>>>> branch 'main' of https://github.com/EODOHA/youth.git
 </th:block>
 
 </head>
@@ -39,7 +116,11 @@
 		<form th:action="@{'/admin/lectures/' + ${lectures.number}}" role="form" method="get" th:object="${lectures}">
 			<table class="table table-hover table-bordered border-dark align-middle">
 			<br>
+<<<<<<< HEAD
+				<p class="title">강 의 수 정</p>
+=======
 				<p class="title">강 의 관 리</p>
+>>>>>>> branch 'main' of https://github.com/EODOHA/youth.git
 			<br>
 				<p class="info">강의명을 선택하여 상태를 정보를 수정할 수 있습니다.</p>
 			<br>

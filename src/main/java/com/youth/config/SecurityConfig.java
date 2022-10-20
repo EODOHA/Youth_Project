@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 		
 		http.csrf().ignoringAntMatchers("/freeboard/write/action");
+		http.csrf().ignoringAntMatchers("/refboard/write/action");
 	}
 	
 	@Bean

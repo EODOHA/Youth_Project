@@ -1,6 +1,8 @@
 package com.youth.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import com.youth.entity.RefBoard;
 
@@ -20,13 +22,28 @@ public class RefBoardResponseDto {
 		this.refId = entity.getRefId();
 		this.refTitle = entity.getRefTitle();
 		this.refContent = entity.getRefContent();
+		this.refReadCnt = entity.getRefReadCnt();
 		this.refRegisterId = entity.getRefRegisterId();
 		this.refRegisterTime = entity.getRefRegisterTime();
+		
 	}
 	
 	@Override
 	public String toString() {
-		return "RefBoardListDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent" + refContent +
-				", refReadCnt=" + refReadCnt + ", refRegisterId=" + refRegisterId + ", refRegisterTime=" + refRegisterTime + "]";
+		return "RefBoardResponseDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent=" + refContent
+									+ ", refReadCnt=" + refReadCnt + ", refRegisterId=" + refRegisterId + ", refRegisterTime=" + refRegisterTime + "]";
+		
 	}
+	
+	public String getRefRegisterTime() {
+		return  toStringDateTime(this.refRegisterTime);
+	}
+
+	public static String toStringDateTime(LocalDateTime localDateTime) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return Optional.ofNullable(localDateTime)
+				.map(formatter::format)
+				.orElse("");
+	}
+	
 }
