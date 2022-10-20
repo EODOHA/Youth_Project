@@ -1,16 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
 <head>
-<title>Notice List</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--부트스트랩 css 추가-->
-<link rel="stylesheet" href="/css/lib/bootstrap.min.css">
-</head>
+<!-- 부투스트랩 css 추가 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<title>게시판 리스트</title>
+<th:block layout:fragment="css">
+	<style>
+.fieldError {
+	color: #bd2130;
+}
+
+.innerContent {
+	max-width: 50%;
+	min-width: 400px;
+	margin: auto;
+}
+
+.title {
+	color: white;
+	background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+	text-align: center;
+	border: 3px solid black;
+	max-width: 1200px;
+	min-width: 400px;
+	font-size: 2.0em;
+	font-weight: bold;
+	margin: auto;
+}
+
+.container {
+	margin-top: 50px;
+}
+
+.card {
+	margin-top: 100px;
+	width: 800px;
+}
+</style>
 <body>
+<div layout:fragment="content">
 	<div class="container">
 		<h1>Notice View.</h1>
-		<form id="frm" action="/board/notice/view/action" method="post">
+		<form id="frm" action="/notice/view/action" method="post">
 			<input type="hidden" name="id" th:value="${info.id}">
 			<div class="mb-3">
 				<!-- <label class="form-label">제목</label> -->
@@ -29,20 +64,20 @@
 			</div>
 			
 			<div class="float-left">
-				<button type="button" class="btn btn-success"
-					onclick="javascript:location.href='/board/notice/list'">목록</button>
-				<button type="submit" class="btn btn-primary">수정</button>
+				<button type="button" class="btn btn-success" 
+					onclick="javascript:location.href='/notice/list'">목록</button>
+				<button type="submit" class="btn btn-primary" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">수정</button>
 			</div>
 
 			<div class="float-right">
-				<button type="button" class="btn btn-danger"
+				<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
 					th:onclick="fnViewDelete()">삭제</button>
 			</div>
 		</form>
 	</div>
 	<!--부트스트랩 js, jquery 추가-->
-	<script src="/js/lib/jquery.min.js"></script>
-	<script src="/js/lib/bootstrap.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<script th:inline="javascript">
 		function fnViewDelete() {
 			if (confirm("Do you want to delete it?")) {
@@ -52,5 +87,6 @@
 			}
 		}
 	</script>
+	</div>
 </body>
 </html>
