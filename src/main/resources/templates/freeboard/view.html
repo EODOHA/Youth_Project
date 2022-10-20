@@ -69,15 +69,12 @@
 						onclick="javascript: location.href='/freeboard/list'">목록</button>
 				</div>
 				<div class="float-left">
-					
-					<button type="submit" class="btn btn-primary"
-						sec:authorize="hasAnyAuthority('ROLE_USER')">수정</button>
-					
+					<button th:if="${#authentication.name == info.writer}" type="submit" class="btn btn-primary"
+						>수정</button>
 				</div>
 				<div class="float-right">
-					<button type="button" class="btn btn-danger"
-						th:onclick="fnViewDelete()"
-						sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제</button>
+					<button th:if="${#authentication.name == info.writer}"type="button" class="btn btn-danger"
+						th:onclick="fnViewDelete()">삭제</button>
 				</div>
 
 				<!-- <div th:if="${fboard.memeber_id == #authentication.principal.member_id}">
