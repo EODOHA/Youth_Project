@@ -30,10 +30,16 @@
 				font-size: 2.0em;
 				font-weight: bold;
 				margin: auto;
+				border-radius: 10px 10px 10px 10px;
 			}
 			
 			.container {
 				margin-top : 50px;
+			}
+			
+			.btBox {
+				margin: auto;
+				text-align: center;
 			}
 		</style>
 	</th:block>
@@ -43,7 +49,10 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-		<h1>게시글 작성</h1>
+		<br>
+		<br>
+		<p class="title">게 시 글 작 성</p>
+		<br>
 		<form action="/freeboard/write/action" method="post">
 			<div class="mb-3">
 				<label class="form-label">제목</label>
@@ -58,11 +67,13 @@
 				<input type="text" class="form-control" name="writer" th:value="${#authentication.name}" readonly >
 				<!-- <p class="form-control" th:text="${#authentication.name}"></p> -->
 			</div>
-			<button type="button" class="btn btn-success" onclick="javascript: location.href='/freeboard/list'">
-				목록으로
-			</button>
-			<button type="submit" class="btn btn-primary">등록</button>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<div class="btBox">
+				<button type="button" class="btn btn-success" onclick="javascript: location.href='/freeboard/list'">
+					목록으로
+				</button>
+				<button type="submit" class="btn btn-primary">등록</button>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</div>
 		</form>
 	</div>
 	<!-- 부트스트랩 js, jquery 추가 -->
