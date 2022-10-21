@@ -6,45 +6,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 부투스트랩 css 추가 -->
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
 <title>게시판 리스트</title>
 <th:block layout:fragment="css">
 	<style>
-.fieldError {
-	color: #bd2130;
-}
-
-.innerContent {
-	max-width: 50%;
-	min-width: 400px;
-	margin: auto;
-}
-
-.title {
-	color: white;
-	background: linear-gradient(to right, #61b6b2 80%, #103c7e);
-	text-align: center;
-	border: 3px solid black;
-	max-width: 1200px;
-	min-width: 400px;
-	font-size: 2.0em;
-	font-weight: bold;
-	margin: auto;
-}
-
-.container {
-	margin-top: 50px;
-}
-
-.card {
-	margin-top: 100px;
-	width: 800px;
-}
-</style>
+		.fieldError {
+			color: #bd2130;
+		}
+		
+		.innerContent {
+			max-width: 50%;
+			min-width: 400px;
+			margin: auto;
+		}
+		
+		.title {
+			color: white;
+			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+			text-align: center;
+			border: 3px solid black;
+			max-width: 700px;
+			min-width: 400px;
+			font-size: 2.0em;
+			font-weight: bold;
+			margin: auto;
+			border-radius: 10px 10px 10px 10px;
+		}
+		
+		.container {
+			margin-top: 50px;
+		}
+		
+		.card {
+			margin-top: 100px;
+			width: 800px;
+		}
+		
+		.btBox {
+			margin: auto;
+			text-align: center;
+		}
+	</style>
 <body>
 <div layout:fragment="content">
 	<div class="container">
-		<h1>Notice View.</h1>
+		<br>
+		<br>
+		<p class="title">공 지 사 항</p>
+		<br>
 		<form id="frm" action="/notice/view/action" method="post">
 			<input type="hidden" name="id" th:value="${info.id}">
 			<div class="mb-3">
@@ -62,16 +71,12 @@
 					class="form-control" name="registerId"
 					th:value="${info.registerId}">
 			</div>
-			
-			<div class="float-left">
-				<button type="button" class="btn btn-success" 
-					onclick="javascript:location.href='/notice/list'">목록</button>
-				<button type="submit" class="btn btn-primary" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">수정</button>
-			</div>
-
-			<div class="float-right">
-				<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
-					th:onclick="fnViewDelete()">삭제</button>
+			<div class="btBox">
+					<button type="button" class="btn btn-success" 
+						onclick="javascript:location.href='/notice/list'">목록</button>
+					<button type="submit" class="btn btn-primary" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">수정</button>
+					<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
+						th:onclick="fnViewDelete()">삭제</button>
 			</div>
 		</form>
 	</div>
