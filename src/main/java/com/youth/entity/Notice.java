@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Notice extends BaseTimeEntity {
+public class Notice extends NoticeFAQTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Notice extends BaseTimeEntity {
 	private String content;
 	private int readCnt;
 	private String registerId;
-	private LocalDateTime registerTime;
+	
 	@Builder
 	public Notice(Long id, String title, String content, int readCnt, String registerId) {
 		this.id = id;

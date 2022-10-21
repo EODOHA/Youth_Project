@@ -61,7 +61,7 @@
 			</div>
 			<div class="mb-3">
 			    <label class="form-label">작성자</label>
-			    <input type="text" class="form-control" name="writer" value="운영자" >
+			    <input type="text" class="form-control" name="registerId"  value="운영자" readonly >
 			</div>
 			   <!-- <div class="mb-3">
           <label  class="form-label">첨부 파일</label>
@@ -75,6 +75,7 @@
         	<div class="btBox">
 				<button type="button" class="btn btn-success" onclick="javascript:location.href='/notice/list'">목록으로</button>
 				<button type="submit" class="btn btn-primary">등록</button>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</div>
 		</form>
 	</div>
