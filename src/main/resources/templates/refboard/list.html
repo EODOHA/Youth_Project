@@ -19,6 +19,11 @@
 				margin: auto;
 				border-radius: 10px 10px 10px 10px;
 			}
+			
+			.btBox {
+				margin: auto;
+				text-align: center;
+			}
 		
 		</style>
 	</th:block>
@@ -50,14 +55,14 @@
 			let delInpChkLen = $("input[name='deleteRefList']:checked").length;
 
 			if (delInpChkLen > 0) {
-				if (confirm("Do you want to delete it?")) {
+				if (confirm("정말 삭제하시겠습니까?")) {
 					let frm = $("#frm");
 					frm.attr("action", "/refboard/delete");
 					frm.attr("method", "post");
 					frm.submit();
 				}
 			} else {
-				alert("Not selected.");
+				alert("선택된 게시글이 없습니다.");
 			}
 		}
 	</script>
@@ -73,35 +78,36 @@
 					<table class="table table-striped table-horizontal table-bordered mt-3">
 						<thead class="thead-strong">
 							<tr>
-			                	<th width="5%"><input type="checkbox" id="chkAll" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"></th>
-			                    <th width="10%">게시글번호</th>
-			                    <th width="">제목</th>
-			                    <th width="20%">작성자</th>
-			                    <th width="10%">조회수</th>
-			                    <th width="20%">작성일</th>
+			                	<th class="text-center" width="5%" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><input type="checkbox" id="chkAll" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"></th>
+		                    	<th class="text-center" width="10%" style="min-width: 50px;">번호</th>
+		                    	<th class="text-center" width="" style="min-width: 100px;">제목</th>
+		                   		<th class="text-center" width="20%" style="min-width: 200px;">작성자</th>
+		                    	<th class="text-center" width="10%" style="min-width: 70px;">조회수</th>
+		                    	<th class="text-center" width="20%" style="min-width: 200px;">작성일</th>
 		                	</tr>
 						</thead>
 						<tbody id="tbody">
 							<tr th:each="refList,index : ${refResultMap.refList}"
 								th:with="paging=${refResultMap.refPaging}">
-								<td><input type="checkbox" name="deleteRefList"
-									th:value=${refList.refId} sec:authorize="hasAnyAuthority('ROLE_ADMIN')"></td>
-								<td><span
+								<td class="text-center" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><input type="checkbox" name="deleteRefList" th:value=${refList.refId}></td>
+								<td class="text-center"><span
 									th:text="${(refResultMap.refTotalCnt - index.index) - (paging.pageNumber * paging.pageSize)}"></span>
 								</td>
-								<td>
+								<td class="text-center">
 								<a th:href="@{./view(refId=${refList.refId})}">
 									<span th:text="${refList.refTitle}"></span>
 								</a>
-								<td><span th:text="${refList.refRegisterId}"></span></td>
-								<td><span th:text="${refList.refReadCnt}"></span></td>
-								<td><span th:text="${refList.refRegisterTime}"></span></td>
+								<td class="text-center"><span th:text="${refList.refRegisterId}"></span></td>
+								<td class="text-center"><span th:text="${refList.refReadCnt}"></span></td>
+								<td class="text-center"><span th:text="${refList.refRegisterTime}"></span></td>
 							</tr>
 						</tbody>
 					</table>
-					<button type="button" class="btn btn-danger"  onclick="fnDelete()" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제</button>
-					<button type="button" class="btn btn-primary"
-						onclick="javascript:location.href='/refboard/write'" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">등록</button>
+					<div class="btBox">
+						<button type="button" class="btn btn-danger"  onclick="fnDelete()" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제</button>
+						<button type="button" class="btn btn-primary"
+							onclick="javascript:location.href='/refboard/write'" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">등록</button>
+					</div>
 					<div class="row">
 						<div class="col">
 							<ul class="pagination">
