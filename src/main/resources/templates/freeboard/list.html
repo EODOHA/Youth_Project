@@ -26,12 +26,19 @@
 				background: linear-gradient(to right, #61b6b2 80%, #103c7e);
 				text-align: center;
 				border: 3px solid black;
-				max-width: 1200px;
+				max-width: 700px;
 				min-width: 400px;
 				font-size: 2.0em;
 				font-weight: bold;
 				margin: auto;
+				border-radius: 10px 10px 10px 10px;
 			}
+			
+			.btBox {
+				margin: auto;
+				text-align: center;
+			}
+		
 		</style>
 	</th:block>
 	
@@ -42,42 +49,48 @@
 		<div class="container">
 		<form action="/freeboard/list" id="frm" method="get" th:object="${fbRequestDto}">
 		    <div class="col-md-12 mt-4">
-		    	<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" onclick="fnDelete()">삭제</button>
-		    	<button type="button" class="btn btn-primary" onclick="javascript: location.href='/freeboard/write'">등록</button>
+		    <br>
+			<br>
+			<p class="title">자 유 게 시 판</p>
+			<br>
 		        <table class="table table-striped table-horizontal table-bordered mt-3">
 		            <thead class="thead-strong">
 		                <tr>
-		                	<th width="5%"><input type="checkbox" id="chkAll" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"></th>
-		                    <th width="10%">게시글번호</th>
-		                    <th width="">제목</th>
-		                    <th width="20%">작성자</th>
-		                    <th width="10%">조회수</th>
-		                    <th width="20%">작성일</th>
+		                	<th class="text-center" width="5%" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><input type="checkbox" id="chkAll" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"></th>
+		                    <th class="text-center" width="10%" style="min-width: 50px;">번호</th>
+		                    <th class="text-center" width="" style="min-width: 100px;">제목</th>
+		                    <th class="text-center" width="20%" style="min-width: 200px;">작성자</th>
+		                    <th class="text-center" width="10%" style="min-width: 70px;">조회수</th>
+		                    <th class="text-center" width="20%" style="min-width: 200px;">작성일</th>
 		                </tr>
 		            </thead>
 		            <tbody id="tbody">
 		            	<tr th:each="list,index : ${resultMap.list}" th:with="paging=${resultMap.paging}">
-		            		<td>
+		            		<td sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="text-center">
 		            			<input type="checkbox" name="deleteFboardno" th:value="${list.fboardno}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 		            		</td>
-							<td>
+							<td class="text-center">
 								<span th:text="${(resultMap.totalCnt - index.index) - (paging.pageNumber * paging.pageSize)}"></span>
 							</td>
-							<td>
+							<td class="text-center">
 								<a th:href="@{./view(fboardno=${list.fboardno})}"><span th:text="${list.title}"></span></a>
 							</td>
-							<td>
+							<td class="text-center">
 								<span th:text="${list.writer}"></span>
 							</td>
-							<td>
+							<td class="text-center">
 								<span th:text="${list.readCnt}"></span>
 							</td>
-							<td>
+							<td class="text-center">
 								<span th:text="${list.createDate}"></span>
 							</td>
 						<tr>
 		            </tbody>
 		        </table>
+		        <div class="btBox">
+			        <button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" onclick="fnDelete()">삭제</button>
+			    	<button type="button" class="btn btn-primary" onclick="javascript: location.href='/freeboard/write'">등록</button>
+		    	</div>
 		        <div class="row">
 					<div class="col">
 						<ul class="pagination">
@@ -118,14 +131,14 @@
     	function fnDelete(){
     		let dellnpChkLen = $("input[name='deleteFboardno']:checked").length;
     		if(dellnpChkLen > 0){
-    			if(confirm("Do you want to delete it?")){
+    			if(confirm("정말 삭제하시겠습니까?")){
     				let frm = $("#frm");
     				frm.attr("action", "/freeboard/delete");
     				frm.attr("method", "post");
     				frm.submit();
     			}
     		} else{
-    			alert("Not selected.");
+    			alert("선택된 게시글이 없습니다.");
     		}
     	}
     	

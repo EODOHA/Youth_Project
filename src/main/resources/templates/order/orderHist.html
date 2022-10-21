@@ -76,7 +76,7 @@
 									<button type="button" class="btn btn-primary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">강의취소</button>
 								</th:block>
 								<th:block th:unless="${order.orderStatus == T(com.youth.constant.OrderStatus).ORDER}">
-									<button class="cancle btn-primary">취소 완료</button>
+									<button class="cancle btn-primary">취소완료</button>
 								</th:block>
 							</div>
 							<h4 class="time" th:text="${order.orderDate} + '에 신청한 강의' + '&nbsp'"></h4>

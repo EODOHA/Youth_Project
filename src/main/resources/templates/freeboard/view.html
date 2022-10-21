@@ -6,41 +6,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 부투스트랩 css 추가 -->
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
 <title>게시판 리스트</title>
 <th:block layout:fragment="css">
 	<style>
-.fieldError {
-	color: #bd2130;
-}
-
-.innerContent {
-	max-width: 50%;
-	min-width: 400px;
-	margin: auto;
-}
-
-.title {
-	color: white;
-	background: linear-gradient(to right, #61b6b2 80%, #103c7e);
-	text-align: center;
-	border: 3px solid black;
-	max-width: 1200px;
-	min-width: 400px;
-	font-size: 2.0em;
-	font-weight: bold;
-	margin: auto;
-}
-
-.container {
-	margin-top: 50px;
-}
-
-.card {
-	margin-top: 100px;
-	width: 800px;
-}
-</style>
+		.fieldError {
+			color: #bd2130;
+		}
+		
+		.innerContent {
+			max-width: 50%;
+			min-width: 400px;
+			margin: auto;
+		}
+		
+		.title {
+			color: white;
+			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+			text-align: center;
+			border: 3px solid black;
+			max-width: 700px;
+			min-width: 400px;
+			font-size: 2.0em;
+			font-weight: bold;
+			margin: auto;
+			border-radius: 10px 10px 10px 10px;
+		}
+		
+		.container {
+			margin-top: 50px;
+		}
+		
+		.card {
+			margin-top: 100px;
+			width: 800px;
+		}
+		
+		.btBox {
+			margin: auto;
+			text-align: center;
+		}
+	</style>
 </th:block>
 
 
@@ -48,7 +54,10 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<h1>자유게시판</h1>
+			<br>
+			<br>
+			<p class="title">게 시 글 수 정</p>
+			<br>
 			<form id="frm" action="/freeboard/view/action" method="post">
 				<input type="hidden" name="fboardno" th:value="${info.fboardno}">
 				<div class="mb-3">
@@ -64,16 +73,12 @@
 					<label class="form-label">작성자</label> <input class="form-control"
 						name="writer" th:value="${info.writer}" readonly>
 				</div>
-				<div class="float-left">
+				<div class="btBox">
 					<button type="button" class="btn btn-success"
 						onclick="javascript: location.href='/freeboard/list'">목록</button>
-				</div>
-				<div class="float-left">
-					<button th:if="${#authentication.name == info.writer}" type="submit" class="btn btn-primary"
+						<button th:if="${#authentication.name == info.writer}" type="submit" class="btn btn-primary"
 						>수정</button>
-				</div>
-				<div class="float-right">
-					<button th:if="${#authentication.name == info.writer}"type="button" class="btn btn-danger"
+						<button th:if="${#authentication.name == info.writer}"type="button" class="btn btn-danger"
 						th:onclick="fnViewDelete()">삭제</button>
 				</div>
 
@@ -93,7 +98,7 @@
 		<script src="/js/bootstrap.min.js"></script>
 		<script th:inline="javascript">
 			function fnViewDelete() {
-				if (confirm("Do you want to delete it?")) {
+				if (confirm("정말 삭제하시겠습니까?")) {
 					let frm = $("#frm");
 					frm.attr("action", "/freeboard/view/delete");
 					frm.submit();
