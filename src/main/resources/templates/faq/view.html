@@ -73,6 +73,7 @@
 				<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
 					th:onclick="fnViewDelete()">삭제</button>
 			</div>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		</form>
 		
 		

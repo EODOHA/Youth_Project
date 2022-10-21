@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name="board_faq")
-public class Board_FAQ extends BaseTimeEntity {
+public class Board_FAQ extends NoticeFAQTimeEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -29,7 +29,7 @@ public class Board_FAQ extends BaseTimeEntity {
 	private String content;
 	private int readCnt;
 	private String registerId;
-	private LocalDateTime registerTime;
+	
 	@Builder
 	public Board_FAQ(Long id, String title, String content, int readCnt, String registerId) {
 		this.id = id;
