@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -18,6 +19,7 @@ public class RefBoard extends RefBaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ref_id", nullable = false)
 	private Long refId;
 	
 	@Column(nullable = false)

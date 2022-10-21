@@ -2,10 +2,13 @@ package com.youth.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -24,7 +27,10 @@ public class RefBoardFile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long refId;
+	
+	@Column(nullable=false)
 	private Long refBoardId;
+	
 	private String origFileName;
 	private String saveFileName;
 	private int fileSize;

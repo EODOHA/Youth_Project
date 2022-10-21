@@ -29,7 +29,7 @@ public class RefBoardResponseDto {
 	
 	@Override
 	public String toString() {
-		return "RefBoardListDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent" + refContent +
+		return "RefBoardIdListDto [refId=" + refId + ", refTitle=" + refTitle + ", refContent" + refContent +
 				", refReadCnt=" + refReadCnt + ", refRegisterId=" + refRegisterId + ", refRegisterTime=" + refRegisterTime + "]";
 	}
 	

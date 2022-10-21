@@ -38,10 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 		
 		http.authorizeRequests()
-		.antMatchers("/", "/members/**", "/freeboard/list").permitAll()
+		.antMatchers("/", "/members/**", "/freeboard/list", "/refboard/list").permitAll()
 		.antMatchers("/admin/**").access("hasRole('ADMIN')")
 		.antMatchers("/freeboard/write","/freeboard/write/action")
-			.access("hasRole('ADMIN') or hasRole('USER') or hasRole('SUB_AD')")
+			.access("hasRole('ADMIN') or hasRole('USER')")
+		.antMatchers("/refboard/write", "/refboard/write/action")
+			.access("hasRole('ADMIN')")
 		.anyRequest().permitAll();
 		
 		http.exceptionHandling()

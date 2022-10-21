@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label font-weight-bold"><span class="text-danger">* </span>Writer.</label>
-                <input type="text" class="form-control" name="refRegisterId" required>
+                <input type="text" class="form-control" name="refRegisterId" required th:value="${#authentication.name}" readonly>
                 <!-- <input type="hidden" class="form-control" th:name="email" th:value="${members.email}"> -->
             </div>
             <div class="mb-3">
@@ -33,9 +33,10 @@
                 </div>
             </div>
             <div class="mt-5">
-                <button type="button" class="btn btn-success" onclick="javascript:location.href='/board/list'">Previous</button>
-                <button type="button" class="btn btn-primary" onclick="fnSubmit();">Submit</button>
+                <button type="button" class="btn btn-success" onclick="javascript:location.href='/refboard/list'">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="fnSubmit();" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" >Submit</button>
             </div>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         </form>
         <script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>

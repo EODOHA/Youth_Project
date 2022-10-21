@@ -2,49 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout}">
-	<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	</head>
 <th:block layout:fragment="content">
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script th:inline="javascript">
-		$("#chkAll").click(function() {
-			if(this.checked) {
-				$("input[name='deleteRefList']").prop("checked", true);
-			} else {
-				$("input[name='deleteRefList']").prop("checked", false);
-			}
-		});
-
-		$("input[name='deleteRefId']").click(function() {
-			let delInpLen = $("input[name='deleteRefList']").length;
-			let delInpChkLen = $("input[name='deleteRefList']:checked").length;
-
-			if (delInpLen == delInpChkLen) {
-				$("chkAll").prop("checked, true");
-			} else {
-				$("#chkAll").prop("checked, false");
-			}
-		});
-
-		function fnDelete() {
-			let delInpChkLen = $("input[name='deleteRefList']:checked").length;
-
-			if (delInpChkLen > 0) {
-				if (confirm("Do you want to delete it?")) {
-					let frm = $("#frm");
-					frm.attr("action", "/refboard/delete");
-					frm.attr("method", "post");
-					frm.submit();
-				}
-			} else {
-				alert("Not selected.");
-			}
-		}
-	</script>
-	<meta charset="UTF-8">
 	<div id="wrapper">
 		<div class="container">
 			<form action="/refboard/list" id="frm" method="get" th:object="${refBoardRequestDto}">
@@ -63,7 +21,7 @@
 						<tbody id="tbody">
 							<tr th:each="refList,index : ${refResultMap.refList}"
 								th:with="paging=${refResultMap.refPaging}">
-								<td><input type="checkbox" name="deleteRefList"
+								<td><input type="checkbox" name="deleteRefIdList"
 									th:value=${refList.refId} sec:authorize="hasAnyAuthority('ROLE_ADMIN')"></td>
 								<td><span
 									th:text="${(refResultMap.refTotalCnt - index.index) - (paging.pageNumber * paging.pageSize)}"></span>
@@ -102,5 +60,40 @@
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 	</div>
+	<script th:inline="javascript">
+		$("#chkAll").click(function() {
+			if(this.checked) {
+				$("input[name='deleteRefIdList']").prop("checked", true);
+			} else {
+				$("input[name='deleteRefIdList']").prop("checked", false);
+			}
+		});
+
+		$("input[name='deleteRefIdList']").click(function() {
+			let delInpLen = $("input[name='deleteRefIdList']").length;
+			let delInpChkLen = $("input[name='deleteRefIdList']:checked").length;
+
+			if (delInpLen == delInpChkLen) {
+				$("chkAll").prop("checked, true");
+			} else {
+				$("#chkAll").prop("checked, false");
+			}
+		});
+
+		function fnDelete() {
+			let delInpChkLen = $("input[name='deleteRefIdList']:checked").length;
+
+			if (delInpChkLen > 0) {
+				if (confirm("Do you want to delete it?")) {
+					let frm = $("#frm");
+					frm.attr("action", "/refboard/delete");
+					frm.attr("method", "post");
+					frm.submit();
+				}
+			} else {
+				alert("Not selected.");
+			}
+		}
+	</script>
 </th:block>
 </html>
