@@ -3,34 +3,70 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="~{layouts/layout}">
 <!-- layout Content -->
+<head>
+<th:block layout:fragment="css">
+		<style>
+			.title {
+				color: white;
+				background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+				text-align: center;
+				border: 3px solid black;
+				max-width: 700px;
+				min-width: 400px;
+				font-size: 2.0em;
+				font-weight: bold;
+				margin: auto;
+				border-radius: 10px 10px 10px 10px;
+			}
+			
+			input[type=file]::file-selector-button {
+			width: 100px;
+  			padding: 5px;
+  			background: white;
+  			border: 3px solid #61b6b2;
+  			border-radius: 10px;
+  			cursor: pointer;
+  			transition: all 0.5s;
+			}
+			
+			input[type=file]::file-selector-button:hover {
+				width: 100px;
+	  			padding: 5px;
+	  			font-weight: bold;
+	  			color: white;
+	  			background: #61b6b2;
+	  			border: 5px solid #61b6b2;
+	  			cursor: pointer;
+			}
+		</style>
+	</th:block>
+</head>
 <th:block layout:fragment="content">
 	<!-- <th:block layout:fragment="css"> -->
 	<div class="container">
-		<h1>Board View.</h1>
+		<br>
+		<br>
+		<p class="title">자 료 실</p>
+		<br>
 		<form id="frm" action="/refboard/view/action" method="post"
 			th:with="refInfo=${refResultMap.refInfo}"
 			enctype="multipart/form-data">
 			<input type="hidden" name="refId" th:value="${refInfo.refId}">
 			<div class="mb-3">
-				<label class="form-label font-weight-bold"><span
-					class="text-danger">* </span>Title.</label> <input type="text"
-					class="form-control" name="refTitle" th:value="${refInfo.refTitle}"
-					required>
+				<label class="form-label font-weight-bold">제목</label>
+				<input type="text" class="form-control" name="refTitle" th:value="${refInfo.refTitle}" required>
 			</div>
 			<div class="mb-3">
-				<label class="form-label font-weight-bold"><span
-					class="text-danger">* </span>Content.</label>
+				<label class="form-label font-weight-bold">내용</label>
 				<textarea class="form-control" rows="5" name="refContent"
 					th:text="${refInfo.refContent}" required></textarea>
 			</div>
 			<div class="mb-3">
-				<label class="form-label font-weight-bold"><span
-					class="text-danger">* </span>Writer.</label> <input type="text"
-					class="form-control" name="refRegisterId"
-					th:value="${refInfo.refRegisterId}" required>
+				<label class="form-label font-weight-bold">작성자</label>
+				<input type="text" class="form-control" name="refRegisterId" th:value="${refInfo.refRegisterId}" required readonly>
 			</div>
 			<div class="mb-3">
-				<label class="form-label font-weight-bold mt-2">File Upload.</label>
+				<label class="form-label font-weight-bold mt-2">파일 업로드</label>
 				<div class="mb-3" id="fileDiv">
 					<div class="custom-file mt-1">
 						<input type="file" class="custom-file-input" id="customFile"
@@ -50,10 +86,9 @@
 							class="form-control img-thumbnail mt-3"
 							th:src="@{/reffile/download(id=${refId})}">
 						<div class="mt-2">
-							<a class="btn btn-dark" th:href="@{/reffile/download(id=${refId})}">Download</a>
+							<a class="btn btn-dark" th:href="@{/reffile/download(id=${refId})}">다운로드</a>
 							<button type="button" class="btn btn-danger"
-								th:onclick="fnFileDelete(this, [[${refId}]])">Delete
-								File</button>
+								th:onclick="fnFileDelete(this, [[${refId}]])">파일삭제</button>
 						</div>
 					</div>
 				</th:block>
@@ -61,10 +96,10 @@
 			<div class="clearfix mt-5">
 				<div class="">
 					<button type="button" class="btn btn-success"
-						onclick="javascript:location.href='/refboard/list'">Previous</button>
-					<button type="button" class="btn btn-primary" onclick="fnSubmit();" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">Edit</button>
+						onclick="javascript:location.href='/refboard/list'">목록으로</button>
+					<button type="button" class="btn btn-primary" onclick="fnSubmit();" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">수정</button>
 					<button type="button" class="btn btn-danger"
-						th:onclick="fnViewDelete()" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">Delete</button>
+						th:onclick="fnViewDelete()" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제</button>
 				</div>
 			</div>
 			<input type="hidden" th:name="${_csrf.parameterName}"
@@ -82,7 +117,7 @@
 			let fileDivCnt = $(".custom-file").length;
 
 			if (fileDivCnt >= fileMaxCnt) {
-				alert("Can't add any more file.");
+				alert("더이상 추가할 수 없습니다.");
 				return false;
 			}
 
@@ -99,7 +134,7 @@
 
 		function fnDelFileDiv() {
 			if ($(".custom-file").length <= 1) {
-				alert("Can't Delete any more file.");
+				alert("더이상 줄일 수 없습니다.");
 				return false;
 			}
 			$(".custom-file")[$(".custom-file").length - 1].remove();
@@ -131,7 +166,7 @@
 		}
 
 		function fnFileDelete(obj, id) {
-			if (confirm("Do you want to file delete it?")) {
+			if (confirm("파일을 삭제하시겠습니까?")) {
 				$(obj).parents(".fileList").remove();
 				deleteFileIdArr.push(id);
 			}
