@@ -23,7 +23,7 @@ public interface RefBoardRepository extends JpaRepository<RefBoard, Long> {
 														+ "WHERE REF_ID = :refId";
 	
 	static final String DELETE_REF_BOARD = "DELETE FROM Ref_Board "
-											+ "WHERE REF_ID IN(:deleteRefList)";
+											+ "WHERE REF_ID IN(:deleteRefId)";
 	
 	
 	@Transactional
@@ -39,5 +39,5 @@ public interface RefBoardRepository extends JpaRepository<RefBoard, Long> {
 	@Transactional
 	@Modifying
 	@Query(value = DELETE_REF_BOARD, nativeQuery = true)
-	public int deleteRefBoard(@Param("deleteRefList") Long[] deleteRefList);
+	public int deleteRefBoard(@Param("deleteRefId") Long[] deleteRefIdList);
 }

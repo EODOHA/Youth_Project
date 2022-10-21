@@ -28,7 +28,7 @@ public class RefBoardFileController {
 	private final RefBoardFileService refBoardFileService;
 	
 	@GetMapping("/reffile/download")
-	public void downloadRefFile(@RequestParam(value="refId", required=false) Long refId, HttpServletResponse response) throws Exception {
+	public void downloadRefFile(@RequestParam(defaultValue="1", required = false) Long refId, HttpServletResponse response) throws Exception {
 		try {
 			RefBoardFileResponseDto refFileInfo = refBoardFileService.findByRefId(refId);
 			

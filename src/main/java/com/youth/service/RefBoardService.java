@@ -89,8 +89,8 @@ public class RefBoardService {
 		refBoardRepository.deleteById(refId);
 	}
 	
-	public void deleteAll(Long[] deleteRefList) throws Exception {
-		refBoardFileService.deleteRefBoardFileYn(deleteRefList);
-		refBoardRepository.deleteRefBoard(deleteRefList);
+	public void deleteAll(Long[] deleteRefId) throws Exception {
+		refBoardFileService.deleteRefBoardFileYn(deleteRefId);
+		refBoardRepository.deleteRefBoard(deleteRefId);
 	}
 }

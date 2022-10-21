@@ -130,8 +130,8 @@ private final RefBoardFileRepository refBoardFileRepository;
 		return (files.size() == refResultList.size()) ? true : false;
 	}
 	
-	public int updateRefDeleteYn(Long[] deleteRefIdList) throws Exception {
-		return refBoardFileRepository.updateRefDeleteYn(deleteRefIdList);
+	public int updateRefDeleteYn(Long[] deleteRefId) throws Exception {
+		return refBoardFileRepository.updateRefDeleteYn(deleteRefId);
 	}
 	
 	public int deleteRefBoardFileYn(Long[] RefBoardIdList) throws Exception {

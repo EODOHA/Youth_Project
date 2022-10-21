@@ -89,9 +89,9 @@ public class RefBoardController {
 	}
 	
 	@PostMapping("/refboard/delete")
-	public String refBoardDeleteAction(Model model, @RequestParam() Long[] deleteRefList) throws Exception {
+	public String refBoardDeleteAction(Model model, @RequestParam() Long[] deleteRefId) throws Exception {
 		try {
-			refBoardService.deleteAll(deleteRefList);
+			refBoardService.deleteAll(deleteRefId);
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
