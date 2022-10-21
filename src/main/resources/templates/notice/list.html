@@ -95,15 +95,17 @@
 				        <button type="button" class="btn btn-primary" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" onclick="javascript:location.href='/notice/write'">등록</button>
 		    		</div>
 			        <div class="row">
+			        <div class="pageBox">
 						<div class="col">
 							<ul class="pagination">
 								<li class="page-item" th:each="index : ${#numbers.sequence(1, resultMap.totalPage)}" th:with="paging=${resultMap.paging}">
-									<a class="page-link" th:classappend="${paging.pageNumber ==  (index-1)} ? bg-primary : bg-secondary" th:href="@{./list(page=${index - 1},page=${paging.pageSize})}">
-										<span class="text-white" th:text="${index}"></span>
+									<a class="page-link" th:classappend="${paging.pageNumber ==  (index-1)}" th:href="@{./list(page=${index - 1},page=${paging.pageSize})}">
+										<span th:text="${index}"></span>
 									</a>
 								</li>
 							</ul>
 						</div>
+					</div>
 					</div>
 			    </div>
 			    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

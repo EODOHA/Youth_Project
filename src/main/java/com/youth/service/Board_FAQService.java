@@ -33,7 +33,7 @@ private final Board_FAQRepository board_FAQRepository;
 		
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		Page<Board_FAQ> list = board_FAQRepository.findAll(PageRequest.of(page, size));
+		Page<Board_FAQ> list = board_FAQRepository.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "registerTime")));
 		resultMap.put("list", list.stream().map(Board_FAQResponseDto::new).collect(Collectors.toList()));
 		resultMap.put("paging", list.getPageable());
 		resultMap.put("totalCnt", list.getTotalElements());

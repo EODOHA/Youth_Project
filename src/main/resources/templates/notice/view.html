@@ -67,16 +67,12 @@
 					th:text="${info.content}"></textarea>
 			</div>
 			<div class="mb-3">
-				<label class="form-label">작성자</label> <input type="text"
-					class="form-control" name="registerId"
-					th:value="${info.registerId}" disabled>
+				<label class="form-label">작성자</label> <input type="text" class="form-control" name="registerId" th:value="${info.registerId}" disabled>
 			</div>
 			<div class="btBox">
-					<button type="button" class="btn btn-success" 
-						onclick="javascript:location.href='/notice/list'">목록</button>
+					<button type="button" class="btn btn-success" onclick="javascript:location.href='/notice/list'">목록</button>
 					<button type="submit" class="btn btn-primary" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">수정</button>
-					<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
-						th:onclick="fnViewDelete()">삭제</button>
+					<button type="button" class="btn btn-danger" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:onclick="fnViewDelete()">삭제</button>
 			</div>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		</form>
@@ -86,7 +82,7 @@
 	<script src="/js/bootstrap.min.js"></script>
 	<script th:inline="javascript">
 		function fnViewDelete() {
-			if (confirm("Do you want to delete it?")) {
+			if (confirm("정말 삭제하시겠습니까?")) {
 				let frm = $("#frm");
 				frm.attr("action", "/notice/view/delete");
 				frm.submit();

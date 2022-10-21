@@ -107,7 +107,7 @@ public class Board_FAQController {
 		return "redirect:/faq/list";
 	}
 	
-	@PostMapping("//faq/delete")
+	@PostMapping("/faq/delete")
 	public String boardDeleteAction(Model model, @RequestParam() Long[] deleteId) throws Exception {
 		
 		try {
