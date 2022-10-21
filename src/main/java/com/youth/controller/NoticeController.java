@@ -3,10 +3,12 @@ package com.youth.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.youth.dto.NoticeRequestDto;
+import com.youth.dto.NoticeResponseDto;
 import com.youth.service.NoticeService;
 
 import lombok.RequiredArgsConstructor;
@@ -107,5 +109,12 @@ public class NoticeController {
 		
 		return "redirect:/notice/list";
 	}
+
+
+	
+	
+	
 }
+	
+
 

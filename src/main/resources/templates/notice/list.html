@@ -46,7 +46,7 @@
 <div layout:fragment="content">
 	<div id="wrapper">
 		<div class="container">
-	    	<form action="/notice/list" id="frm" method="get">
+	    	<form action="/notice/list" id="frm" method="get" th:object="${noticeRequestDto}">
 			    <div class="col-md-12 mt-4">
 			    <br>
 				<br>
@@ -87,7 +87,7 @@
 								<td class="text-center">
 									<span th:text="${list.registerTime}"></span>
 								</td>
-							<tr>
+							<tr> 
 			            </tbody>
 			        </table>
 			        <div class="btBox">

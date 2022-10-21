@@ -27,8 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class FreeBoardController {
 	
 	private final FreeBoardService fbService;
-	private final FreeBoardRepository fbRepository;
-	private final MemberService memberService;
+
 	
 	@GetMapping("/freeboard/list")
 	public String getFreeBoardListPage(Model model, @RequestParam(required = false, defaultValue = "0")

@@ -21,12 +21,16 @@ public interface NoticeRepository extends JpaRepository<Notice, Long> {
 			+ "UPDATE_TIME = NOW() "
 			+ "WHERE ID = :#{#noticeRequestDto.id}";
 	
-	static final String UPDATE_NOTICE_READ_CNT_INC = "UPDATE Notice "
-			+ "SET READ_CNT = READ_CNT + 1 "
-			+ "WHERE ID = :id";
+	
+	
+	
+	static final String UPDATE_NOTICE_READ_CNT_INC = "UPDATE notice "
+			+ "SET read_cnt = read_cnt + 1 "
+			+ "WHERE id = :id";
 	
 	static final String DELETE_NOTICE = "DELETE FROM Notice "
 			+ "WHERE ID IN (:deleteList)";
+	
 	@Transactional
 	@Modifying
 	@Query(value = UPDATE_NOTICE, nativeQuery = true)

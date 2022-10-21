@@ -58,6 +58,7 @@ private final Board_FAQRepository board_FAQRepository;
 	   }
 	
 	public Board_FAQResponseDto findById(Long id) {
+		board_FAQRepository.updateBoardReadCntInc(id);
 		return new Board_FAQResponseDto(board_FAQRepository.findById(id).get());
 	}
 	
@@ -65,10 +66,7 @@ private final Board_FAQRepository board_FAQRepository;
 		return board_FAQRepository.updateBoard(board_FAQRequestDto);
 	}
 	
-	public int updateBoardReadCntInc(Long id) {
-		return board_FAQRepository.updateBoardReadCntInc(id);
-	}
-	
+
 	public void deleteById(Long id) {
 		board_FAQRepository.deleteById(id);
 	}

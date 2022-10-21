@@ -29,7 +29,7 @@ public interface Board_FAQRepository extends JpaRepository<Board_FAQ, Long> {
 	
 	static final String UPDATE_BOARD_READ_CNT_INC = "UPDATE board_FAQ "
 			+ "SET READ_CNT = READ_CNT + 1 "
-			+ "WHERE ID = : id";
+			+ "WHERE ID = :id";
 	
 	static final String DELETE_BOARD = "DELETE FROM board_FAQ "
 			+ "WHERE ID IN (:deleteList)";
