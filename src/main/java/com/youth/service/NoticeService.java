@@ -28,6 +28,7 @@ private final NoticeRepository noticeRepository;
 		return noticeRepository.save(noticeSaveDto.toEntity()).getId();
 	}
 	
+	
 	@Transactional(readOnly = true)
 	public HashMap<String, Object> findAll(Integer page, Integer size) {
 		
@@ -43,6 +44,7 @@ private final NoticeRepository noticeRepository;
 	}
 	
 	public NoticeResponseDto findById(Long id) {
+		noticeRepository.updateNoticeReadCntInc(id);
 		return new NoticeResponseDto(noticeRepository.findById(id).get());
 	}
 	
@@ -50,9 +52,12 @@ private final NoticeRepository noticeRepository;
 		return noticeRepository.updateNotice(noticeRequestDto);
 	}
 	
-	public int updateNoticeReadCntInc(Long id) {
-		return noticeRepository.updateNoticeReadCntInc(id);
-	}
+	     
+	 public int updateNoticeReadCntInc(Long id) {        
+		 return noticeRepository.updateNoticeReadCntInc(id);  
+		 }
+	 
+	
 	
 	public void deleteById(Long id) {
 		noticeRepository.deleteById(id);
