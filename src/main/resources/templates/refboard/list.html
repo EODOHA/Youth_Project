@@ -110,14 +110,11 @@
 					<div class="row">
 						<div class="col">
 							<ul class="pagination">
-								<li class="page-item"
-									th:each="index : ${#numbers.sequence(1, refResultMap.refTotalPage)}"
-									th:with="paging=${refResultMap.refPaging}"><a
-									class="page-link"
-									th:classappend="${paging.pageNumber == (index-1)} ? bg-primary : bg-secondary"
-									th:href="@{./list(page=${index - 1}, page=${paging.pageSize})}">
-										<span class="text-white" th:text="${index}"></span>
-								</a></li>
+								<li class="page-item" th:each="index : ${#numbers.sequence(1, refResultMap.refTotalPage)}" th:with="paging=${refResultMap.refPaging}">
+									<a class="page-link" th:classappend="${paging.pageNumber == (index-1)}" th:href="@{./list(page=${index - 1}, page=${paging.pageSize})}">
+										<span th:text="${index}"></span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
