@@ -38,6 +38,17 @@
 				margin: auto;
 				text-align: center;
 			}
+			
+			.col {
+	        	position: relative;
+        	}
+         
+	        #pagination {
+	        	position: absolute;
+	        	left: 50%;
+	        	transform: translate(-50%, -50%);
+	        	top: 30px;
+	        }
 		
 		</style>
 	</th:block>
@@ -94,7 +105,8 @@
 		    	</div>
 		        <div class="row">
 					<div class="col">
-						<ul class="pagination">
+					<br>
+						<ul class="pagination" id="pagination">
 							<li class="page-item" th:each="index : ${#numbers.sequence(1, resultMap.totalPage)}" th:with="paging=${resultMap.paging}">
 								<a class="page-link" th:href="@{./list(page=${index - 1},page=${paging.pageSize})}"><span th:text="${index}"></span></a>
 							</li>

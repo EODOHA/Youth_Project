@@ -51,6 +51,11 @@ public class MainController {
 		return "/nav/consultingPage";
 	}
 	
+	@GetMapping(value = "jobPer")
+	public String jobPerPage() {
+		return "/nav/jobPerPage";
+	}
+	
 	
 	@GetMapping(value = "lectures")
 	public String lectures(LectureSearchDto lectureSearchDto, Optional<Integer> page, Model model) {

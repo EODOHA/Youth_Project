@@ -39,6 +39,25 @@
 				text-align: center;
 			}
 			
+			.col {
+	        	position: relative;
+        	}
+         
+	        #pagination {
+	        	position: absolute;
+	        	left: 50%;
+	        	transform: translate(-50%, -50%);
+	        	top: 30px;
+	        	z-index: 10;
+	        }
+			
+			.shBox {
+				position: relative;
+			}
+			
+			.search {
+				float: right;
+			}
 		</style>
 	</th:block>
 	
@@ -92,7 +111,7 @@
 					</div>
 					<div class="row">
 						<div class="col">
-							<ul class="pagination">
+							<ul class="pagination" id="pagination">
 								<li class="page-item"
 									th:each="index : ${#numbers.sequence(1, resultMap.totalPage)}"
 									th:with="paging=${resultMap.paging}"><a class="page-link"
@@ -102,11 +121,13 @@
 								</a></li>
 							</ul>
 						</div>
+						<div class="shBox">
 						<div class="search">
 							<form th:action="@{/faq/list}" method="get">
 								<input type="text" name="searchKeyword">
 								<button class="btn btn-primary" type="submit">검색</button>
 							</form>
+						</div>
 						</div>
 					</div>
 				</div>
