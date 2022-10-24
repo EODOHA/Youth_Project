@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().ignoringAntMatchers("/faq/write/action");
 		http.csrf().ignoringAntMatchers("/notice/write/action");
 		http.csrf().ignoringAntMatchers("/faq/delete");
+		http.csrf().ignoringAntMatchers("/reffile/delete.ajax");
 	}
 	
 	@Bean
