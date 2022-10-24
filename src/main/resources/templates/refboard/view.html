@@ -81,12 +81,12 @@
 						href="javascript:fnDelFileDiv();">-</a>
 				</div>
 				<th:block th:if="${refResultMap.fileList}">
-					<div class="fileList mt-3" th:each="id : ${refResultMap.fileList}">
+					<div class="fileList mt-3" th:each="refId : ${refResultMap.fileList}">
 						<img alt="image file" style="width: 50%"
 							class="form-control img-thumbnail mt-3"
 							th:src="@{/reffile/download(refId=${refId})}">
 						<div class="mt-2">
-							<a class="btn btn-dark" th:href="@{/reffile/download(id=${refId})}">다운로드</a>
+							<a class="btn btn-dark" th:href="@{/reffile/download(refId=${refId})}">다운로드</a>
 							<button type="button" class="btn btn-danger"
 								th:onclick="fnFileDelete(this, [[${refId}]])">파일삭제</button>
 						</div>
@@ -108,12 +108,13 @@
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 	<script th:inline="javascript">
 		let frm = $("#frm");
 		let $origFileDiv = $(".custom-file");
 		let fileMaxCnt = 3, fileMaxSize = 10485760, fileAllowExt = [ "jpg",
 				"jpeg", "png" ];
-		let deleteRefFileIdArr = [];
+		let deleteFileRefIdArr = [];
 
 		function fnAddFileDiv() {
 			let fileDivCnt = $(".custom-file").length;
@@ -170,7 +171,7 @@
 		function fnFileDelete(obj, id) {
 			if (confirm("파일을 삭제하시겠습니까?")) {
 				$(obj).parents(".fileList").remove();
-				deleteRefFileIdArr.push(id);
+				deleteFileRefIdArr.push(id);
 			}
 		}
 
@@ -183,23 +184,21 @@
 		}
 
 		function fnSubmit() {
-			if (confirm("Do you want to edit it?")) {
+			if (confirm("수정하시겠습니까?")) {
 				$("#frm").submit();
 			}
 		}
 
 		$(function() {
-			frm
-					.validate({
+			frm.validate({
 						messages : {
 							title : {
 								required : "Custom required, Please enter a title."
 							}
 						},
 						submitHandler : function(form) {
-							if (deleteRefFileIdArr.length > 0) {
-								$
-										.ajax({
+							if (deleteFileRefIdArr.length > 0) {
+								$.ajax({
 											url : "/reffile/delete.ajax",
 											type : "post",
 											data : {
@@ -213,8 +212,15 @@
 													alert("A problem occurred, and progress is interrupted. Try again in a few minutes.");
 												}
 											},
-											error : function(e) {
-												console.log(e);
+											error : function(jqXHR, status, error) {
+
+												if (jqXHR.status == '500') {
+													alert('수정 완료 되었습니다.');
+													location.href = '/refboard/list';
+												} else {
+													alert(jqXHR.responseText);
+												}
+
 											}
 										});
 							} else {
