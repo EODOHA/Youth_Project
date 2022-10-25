@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layouts/layout}">
+	layout:decorate="~{layouts/layout}"
+	xmlns:sec="http://thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,12 +74,18 @@
 					<label class="form-label">작성자</label> <input class="form-control"
 						name="writer" th:value="${info.writer}" readonly>
 				</div>
-				<div class="btBox">
+				<div class="btBox" sec:authorize="hasAnyAuthority('ROLE_USER')">
 					<button type="button" class="btn btn-success"
 						onclick="javascript: location.href='/freeboard/list'">목록</button>
 						<button th:if="${#authentication.name == info.writer}" type="submit" class="btn btn-primary">수정</button>
 						<button th:if="${#authentication.name == info.writer}"type="button" class="btn btn-danger" th:onclick="fnViewDelete()">삭제</button>
 				</div>
+				<div class="btBox" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" >
+				<button type="button" class="btn btn-success"
+						onclick="javascript: location.href='/freeboard/list'">목록</button>
+						<button  type="submit" class="btn btn-primary">수정</button>
+						<button  type="button" class="btn btn-danger" th:onclick="fnViewDelete()">삭제</button>
+				</div> 
 
 				<!-- <div th:if="${fboard.memeber_id == #authentication.principal.member_id}">
 					<a th:href="@{/fboard/{member_id}/update(member_id=${fboard.member_id})}"
