@@ -3,6 +3,7 @@ package com.youth.service;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.youth.DataNotFoundException;
 import com.youth.dto.MemberFormDto;
 import com.youth.entity.Member;
 import com.youth.repository.MemberRepository;
@@ -85,4 +87,14 @@ public class MemberService implements UserDetailsService {
 		Member member = memberRepository.findByEmail(email);
 		return member;
 	}
+	
+	public Member getUser(String email) {
+        Optional<Member> member = this.memberRepository.findByemail(email);
+        if (member.isPresent()) {
+            return member.get();
+        } else {
+            throw new DataNotFoundException("member not found");
+        }
+    }
+	
 }

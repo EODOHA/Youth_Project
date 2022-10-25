@@ -15,76 +15,76 @@
 			</div>
 			
 			<div class="navbar-log-member">
-				<a href="/members/login" class="navbar-log" sec:authorize="isAnonymous()">로그인</a>
-				<a href="/admin/list" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">회원관리</a>
-				<a href="/admin/homeUpdate" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">홈페이지관리</a>
-				<a href="/members/logout" class="navbar-log" sec:authorize="isAuthenticated()">로그아웃</a>
-				<a href="/members/new" class="navbar-member" sec:authorize="isAnonymous()">회원가입</a>
+				<a href="/members/login" class="navbar-log" sec:authorize="isAnonymous()">濡쒓렇�씤</a>
+				<a href="/admin/list" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">�쉶�썝愿�由�</a>
+				<a href="/admin/homeUpdate" class="navbar-log" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">�솃�럹�씠吏�愿�由�</a>
+				<a href="/members/logout" class="navbar-log" sec:authorize="isAuthenticated()">濡쒓렇�븘�썐</a>
+				<a href="/members/new" class="navbar-member" sec:authorize="isAnonymous()">�쉶�썝媛��엯</a>
 			</div>
 			<div class="welbox">
 			<div class="welcome" sec:authorize="isAuthenticated()">
-            	<p class="wel" th:text="'[' + ${#authentication.name} + ']' + ' 님 환영합니다!'"></p>
+            	<p class="wel" th:text="'[' + ${#authentication.name} + ']' + ' �떂 �솚�쁺�빀�땲�떎!'"></p>
             </div>
             </div>
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
 		<button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-			<a href="#" class="navbar-brand ms-3 d-lg-none">메 뉴</a>
+			<a href="#" class="navbar-brand ms-3 d-lg-none">硫� �돱</a>
 			 <span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav me-auto p-3 p-lg-0">
 				<div class="nav-item dropdown">
-					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">청년센터소개</a>
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">泥��뀈�꽱�꽣�냼媛�</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-						<a href="/introPage" class="dropdown-item">인사말</a>
-						<a href="/collaboPage" class="dropdown-item">경기청년일자리협업단</a>
-						<a href="/notice/list" class="dropdown-item">공지사항</a>
+						<a href="/introPage" class="dropdown-item">�씤�궗留�</a>
+						<a href="/collaboPage" class="dropdown-item">寃쎄린泥��뀈�씪�옄由ы삊�뾽�떒</a>
+						<a href="/notice/list" class="dropdown-item">怨듭��궗�빆</a>
 					</div>
 				</div>
 				<div class="nav-item dropdown">
-					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">연계서비스</a>
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">�뿰怨꾩꽌鍮꾩뒪</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-						<a href="/careerTestPage" class="dropdown-item">진로검사</a>
-						<a href="/consultingPage" class="dropdown-item">자기소개서 컨설팅</a>
-						<!-- <a href="#" class="dropdown-item">(NULL)취업 멘토링</a> -->
+						<a href="/careerTestPage" class="dropdown-item">吏꾨줈寃��궗</a>
+						<a href="/consultingPage" class="dropdown-item">�옄湲곗냼媛쒖꽌 而⑥꽕�똿</a>
+						<!-- <a href="#" class="dropdown-item">(NULL)痍⑥뾽 硫섑넗留�</a> -->
 					</div>
 				</div>
 				<div class="nav-item dropdown">
-					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">게시판</a>
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">寃뚯떆�뙋</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-						<a href="/freeboard/list" class="dropdown-item">자유게시판</a>
-						<a href="/refboard/list" class="dropdown-item">자료실</a>
-						<a href="/qnaboard/list" class="dropdown-item">Q&A</a>
+						<a href="/freeboard/list" class="dropdown-item">�옄�쑀寃뚯떆�뙋</a>
+						<a href="/refboard/list" class="dropdown-item">�옄猷뚯떎</a>
+						<a href="/question/list" class="dropdown-item">Q&A</a>
 						<a href="/faq/list" class="dropdown-item">FAQ</a>
 					</div>
 				</div>
 				<div class="nav-item dropdown">
-					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">온라인강의</a>
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">�삩�씪�씤媛뺤쓽</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-						<a href="/lectures" class="dropdown-item">강의목록</a>
-						<!-- <a href="#" class="dropdown-item">(NULL)교육정보</a> -->
-						<!-- <a href="/orders" class="dropdown-item" sec:authorize="isAuthenticated()">나의강의</a> -->
-						<!-- <a href="#" class="dropdown-item">(NULL)인기과정</a> -->
-						<!-- <a href="#" class="dropdown-item">(NULL)추천과정</a> -->
-						<a href="#" class="dropdown-item">(NULL)Q&A공간</a>
-						<a href="/admin/lectures" class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SUB_AD')" style="color: #61b6b2;">강의관리(관리자)</a>
-						<a href="/admin/lecture/new" class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SUB_AD')" style="color: #61b6b2;">강의등록(관리자)</a>
+						<a href="/lectures" class="dropdown-item">媛뺤쓽紐⑸줉</a>
+						<!-- <a href="#" class="dropdown-item">(NULL)援먯쑁�젙蹂�</a> -->
+						<!-- <a href="/orders" class="dropdown-item" sec:authorize="isAuthenticated()">�굹�쓽媛뺤쓽</a> -->
+						<!-- <a href="#" class="dropdown-item">(NULL)�씤湲곌낵�젙</a> -->
+						<!-- <a href="#" class="dropdown-item">(NULL)異붿쿇怨쇱젙</a> -->
+						<a href="#" class="dropdown-item">(NULL)Q&A怨듦컙</a>
+						<a href="/admin/lectures" class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SUB_AD')" style="color: #61b6b2;">媛뺤쓽愿�由�(愿�由ъ옄)</a>
+						<a href="/admin/lecture/new" class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SUB_AD')" style="color: #61b6b2;">媛뺤쓽�벑濡�(愿�由ъ옄)</a>
 					</div>
 				</div>
 				<div class="nav-item dropdown">
-					<a href="#" class="nav-link dropdown-toggle" sec:authorize="isAuthenticated()" data-bs-toggle="dropdown">마이페이지</a>
+					<a href="#" class="nav-link dropdown-toggle" sec:authorize="isAuthenticated()" data-bs-toggle="dropdown">留덉씠�럹�씠吏�</a>
 					<div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-						<!-- <a href="#" class="dropdown-item">(NULL)학습현황</a>
-						<a href="#" class="dropdown-item">(NULL)학습후기</a>
-						<a href="#" class="dropdown-item">(NULL)나의관심과정</a>
-						<a href="#" class="dropdown-item">(NULL)맞춤교육</a> -->
-						<a href="/orders" class="dropdown-item" sec:authorize="isAuthenticated()">나의강의</a>
-						<a href="/members/updateMember" sec:authorize="isAuthenticated()" class="dropdown-item">개인정보수정</a>
+						<!-- <a href="#" class="dropdown-item">(NULL)�븰�뒿�쁽�솴</a>
+						<a href="#" class="dropdown-item">(NULL)�븰�뒿�썑湲�</a>
+						<a href="#" class="dropdown-item">(NULL)�굹�쓽愿��떖怨쇱젙</a>
+						<a href="#" class="dropdown-item">(NULL)留욎땄援먯쑁</a> -->
+						<a href="/orders" class="dropdown-item" sec:authorize="isAuthenticated()">�굹�쓽媛뺤쓽</a>
+						<a href="/members/updateMember" sec:authorize="isAuthenticated()" class="dropdown-item">媛쒖씤�젙蹂댁닔�젙</a>
 					</div>
 				</div>
-				<a href="/jobPer" class="nav-link">취업률현황</a>					
+				<a href="/jobPer" class="nav-link">痍⑥뾽瑜좏쁽�솴</a>					
 			</div>
 		</div>
 	</nav>
