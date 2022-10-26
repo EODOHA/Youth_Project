@@ -44,6 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.access("hasRole('ADMIN') or hasRole('USER')")
 		.antMatchers("/refboard/write", "/refboard/write/action")
 			.access("hasRole('ADMIN')")
+		
+		
+			
+		
+			
 		.anyRequest().permitAll();
 		
 		http.exceptionHandling()
@@ -54,6 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().ignoringAntMatchers("/notice/write/action");
 		http.csrf().ignoringAntMatchers("/faq/delete");
 		http.csrf().ignoringAntMatchers("/reffile/delete.ajax");
+	
+		
+		
+	
 	}
 	
 	@Bean
