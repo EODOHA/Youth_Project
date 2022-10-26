@@ -53,55 +53,55 @@
 
 
 				<!-- 질문 -->
-				<h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+				<h2 class="border-bottom py-2" th:text="${question2.subject}"></h2>
 				<div class="card my-3">
 					<div class="card-body">
 						<div class="card-text" style="white-space: pre-line;"
-							th:text="${question.content}"></div>
+							th:text="${question2.content}"></div>
 						<div class="d-flex justify-content-end">
-							<div th:if="${question.modifyDate != null}"
+							<div th:if="${question2.modifyDate != null}"
 								class="badge bg-light text-dark p-2 text-start mx-3">
 								<div class="mb-2">modified at</div>
 								<div
-									th:text="${#temporals.format(question.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+									th:text="${#temporals.format(question2.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
 							</div>
 							<div class="badge bg-light text-dark p-2 text-start">
 
 
 								<div class="mb-2">
-									<span th:if="${question.author != null}"
-										th:text="${question.author.email}"></span>
+									<span th:if="${question2.author != null}"
+										th:text="${question2.author.email}"></span>
 								</div>
 
 								<div
-									th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+									th:text="${#temporals.format(question2.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 							</div>
 						</div>
 
 						<div class="my-3" sec:authorize="hasAnyAuthority('ROLE_USER')">
-							<a th:href="@{|/question/modify/${question.id}|}"
+							<a th:href="@{|/question2/modify/${question2.id}|}"
 								class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
-								th:if="${#authentication.name == question.author.email}"
+								th:if="${#authentication.name == question2.author.email}"
 								th:text="수정"></a>
 								
 								 <a href="javascript:void(0);"
-								th:data-uri="@{|/question/delete/${question.id}|}"
+								th:data-uri="@{|/question2/delete/${question2.id}|}"
 								class="delete btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
-								th:if="${#authentication.name == question.author.email}"
+								th:if="${#authentication.name == question2.author.email}"
 								th:text="삭제"></a>
 						</div>
 
 						<div class="my-3" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-							<a th:href="@{|/question/modify/${question.id}|}"
+							<a th:href="@{|/question2/modify/${question2.id}|}"
 								class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
 								
 								th:text="수정"></a>
 								
 								 <a href="javascript:void(0);"
-								th:data-uri="@{|/question/delete/${question.id}|}"
+								th:data-uri="@{|/question2/delete/${question2.id}|}"
 								class="delete btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
 								
@@ -113,43 +113,43 @@
 				</div>
 				<!-- 답변의 갯수 표시 -->
 				<h5 class="border-bottom my-3 py-2"
-					th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+					th:text="|${#lists.size(question2.answer2List)}개의 답변이 있습니다.|"></h5>
 				<!-- 답변 반복 시작 -->
-				<div class="card my-3" th:each="answer : ${question.answerList}">
+				<div class="card my-3" th:each="answer2 : ${question2.answer2List}">
 					<div class="card-body">
 						<div class="card-text" style="white-space: pre-line;"
-							th:text="${answer.content}"></div>
+							th:text="${answer2.content}"></div>
 						<div class="d-flex justify-content-end">
 
-							<div th:if="${answer.modifyDate != null}"
+							<div th:if="${answer2.modifyDate != null}"
 								class="badge bg-light text-dark p-2 text-start mx-3">
 								<div class="mb-2">modified at</div>
 								<div
-									th:text="${#temporals.format(answer.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+									th:text="${#temporals.format(answer2.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
 							</div>
 
 							<div class="badge bg-light text-dark p-2 text-start">
 
 								<div class="mb-2">
-									<span th:if="${answer.author != null}"
-										th:text="${answer.author.email}"></span>
+									<span th:if="${answer2.author != null}"
+										th:text="${answer2.author.email}"></span>
 								</div>
 
 								<div
-									th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+									th:text="${#temporals.format(answer2.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 							</div>
 						</div>
 
 						<div class="my-3">
-							<a th:href="@{|/answer/modify/${answer.id}|}"
+							<a th:href="@{|/answer2/modify/${answer2.id}|}"
 								class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
-								th:if="${#authentication.name == answer.author.email}"
+								th:if="${#authentication.name == answer2.author.email}"
 								th:text="수정"></a> <a href="javascript:void(0);"
-								th:data-uri="@{|/answer/delete/${answer.id}|}"
+								th:data-uri="@{|/answer2/delete/${answer2.id}|}"
 								class="delete btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
-								th:if="${#authentication.name == answer.author.email}"
+								th:if="${#authentication.name == answer2.author.email}"
 								th:text="삭제"></a>
 						</div>
 
@@ -158,7 +158,7 @@
 				</div>
 				<!-- 답변 반복 끝  -->
 				<!-- 답변 작성 -->
-				<form th:action="@{|/answer/create/${question.id}|}" method="post"
+				<form th:action="@{|/answer2/create/${question2.id}|}" method="post"
 					class="my-3">
 					<textarea name="content" id="content" rows="10"
 						class="form-control"></textarea>

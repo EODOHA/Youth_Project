@@ -63,17 +63,17 @@
           
         </thead>
         <tbody>
-            <tr class="text-center" th:each="question, loop : ${paging}">
+            <tr class="text-center" th:each="question2, loop : ${paging}">
                 <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
                 <td class="text-start">
-                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                    <a th:href="@{|/question2/detail/${question2.id}|}" th:text="${question2.subject}"></a>
                     <span class="text-danger small ms-2"
-                        th:if="${#lists.size(question.answerList) > 0}" 
-                        th:text="${#lists.size(question.answerList)}">
+                        th:if="${#lists.size(question2.answer2List) > 0}" 
+                        th:text="${#lists.size(question2.answer2List)}">
                     </span>
                 </td>
-                <td><span th:if="${question.author != null}" th:text="${question.author.email}"></span></td>
-                <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                <td><span th:if="${question2.author != null}" th:text="${question2.author.email}"></span></td>
+                <td th:text="${#temporals.format(question2.createDate, 'yyyy-MM-dd HH:mm')}"></td>
             </tr>
         </tbody>
     </table>
@@ -104,7 +104,7 @@
         </ul>
     </div>
     <!-- 페이징처리 끝 -->
-    <a th:href="@{/question/create}" sec:authorize="isAuthenticated()" class="btn btn-primary">질문 등록하기</a>
+    <a th:href="@{/question2/create}" sec:authorize="isAuthenticated()" class="btn btn-primary">질문 등록하기</a>
 </div>
 </div>
 </div>
