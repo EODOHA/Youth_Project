@@ -9,31 +9,42 @@
 <!-- <link rel="stylesheet" href="/css/lib/bootstrap.min.css"> -->
 <th:block layout:fragment="css">
 	<style>
-.fieldError {
-	color: #bd2130;
-}
-
-.innerContent {
-	max-width: 50%;
-	min-width: 400px;
-	margin: auto;
-}
-
-.title {
-	color: white;
-	background: linear-gradient(to right, #61b6b2 80%, #103c7e);
-	text-align: center;
-	border: 3px solid black;
-	max-width: 1200px;
-	min-width: 400px;
-	font-size: 2.0em;
-	font-weight: bold;
-	margin: auto;
-}
-
-.container {
-	margin-top: 50px;
-}
+		.fieldError {
+			color: #bd2130;
+		}
+		
+		.innerContent {
+			max-width: 50%;
+			min-width: 400px;
+			margin: auto;
+		}
+		
+		.title {
+			color: white;
+			background: linear-gradient(to right, #61b6b2 80%, #103c7e);
+			text-align: center;
+			border: 3px solid black;
+			max-width: 700px;
+			min-width: 400px;
+			font-size: 2.0em;
+			font-weight: bold;
+			margin: auto;
+			border-radius: 10px 10px 10px 10px;
+			}
+		
+		.container {
+			margin-top: 50px;
+		}
+		
+		.my-33 {
+			float: right;
+			margin-top: 20px;
+		}
+		
+		.btBox {
+			margin: auto;
+			text-align: center;
+		}
 </style>
 </th:block>
 
@@ -42,7 +53,10 @@
 <body>
 	<th:block layout:fragment="content">
 		<div class="container">
-
+		<br>
+		<br>
+		<p class="title">Q&A 게시글</p>
+		<br>
 			<div class="mb-3">
 
 
@@ -61,7 +75,7 @@
 						<div class="d-flex justify-content-end">
 							<div th:if="${question.modifyDate != null}"
 								class="badge bg-light text-dark p-2 text-start mx-3">
-								<div class="mb-2">modified at</div>
+								<div class="mb-2">수정시간</div>
 								<div
 									th:text="${#temporals.format(question.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
 							</div>
@@ -78,7 +92,7 @@
 							</div>
 						</div>
 
-						<div class="my-3" sec:authorize="hasAnyAuthority('ROLE_USER')">
+						<div class="my-33" sec:authorize="hasAnyAuthority('ROLE_USER')">
 							<a th:href="@{|/question/modify/${question.id}|}"
 								class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
@@ -93,7 +107,7 @@
 								th:text="삭제"></a>
 						</div>
 
-						<div class="my-3" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+						<div class="my-33" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 							<a th:href="@{|/question/modify/${question.id}|}"
 								class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
@@ -123,7 +137,7 @@
 
 							<div th:if="${answer.modifyDate != null}"
 								class="badge bg-light text-dark p-2 text-start mx-3">
-								<div class="mb-2">modified at</div>
+								<div class="mb-2">수정시간</div>
 								<div
 									th:text="${#temporals.format(answer.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
 							</div>
@@ -140,7 +154,7 @@
 							</div>
 						</div>
 
-						<div class="my-3">
+						<div class="my-33">
 							<a th:href="@{|/answer/modify/${answer.id}|}"
 								class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
@@ -162,8 +176,10 @@
 					class="my-3">
 					<textarea name="content" id="content" rows="10"
 						class="form-control"></textarea>
-					<input type="submit" value="답변등록" sec:authorize="isAuthenticated()"
-						class="btn btn-primary my-2">
+					<div class="btBox">
+						<input type="submit" value="답변등록" sec:authorize="isAuthenticated()"
+							class="btn btn-primary my-2">
+					</div>
 				</form>
 			</div>
 			<script layout:fragment="script" type='text/javascript'>
